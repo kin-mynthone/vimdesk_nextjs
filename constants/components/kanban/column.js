@@ -1,0 +1,62 @@
+import React from "react";
+import MyTask from "./task";
+import { Flex, Text, Container, Box, Spacer } from "@chakra-ui/react";
+import { Droppable } from "react-beautiful-dnd";
+import { HKebab, PlusSign } from "../../../assets";
+import Image from "next/image";
+const Column = ({ column, tasks }) => {
+  return (
+    <Flex margin={"8px"} flexDirection={"column"}>
+      <Flex
+        paddingY={"15px"}
+        paddingX={"15px"}
+        marginRight={"10px"}
+        width={"250px"}
+        height={"100px"}
+        borderRadius={13}
+        marginBottom={"20px"}
+        flexDirection={"row"}
+        alignItems={"center"}
+        backgroundColor={"#F7FAFB"}
+        style={{
+          boxShadow: "0px 0px 5px 0px #CCCCCC",
+        }}
+      >
+        <Box
+          borderRadius="full"
+          bg="vimdesk_blue"
+          h={"20px"}
+          w={1}
+          marginRight={"10px"}
+        />
+
+        <Text textColor={"vimdesk_blue"} fontWeight={700} fontSize={15}>
+          {column.title}
+        </Text>
+        <Spacer />
+
+        <Box marginRight={"18px"} paddingTop={"6px"}>
+          <Image src={HKebab} alt="vimdesk_h_kebab" height={"20px"} />
+        </Box>
+        <Image src={PlusSign} alt="vimdesk_h_kebab" height={"20px"} />
+      </Flex>
+      <Droppable droppableId={column.id}>
+        {(provided) => (
+          <Flex
+            width={"250px"}
+            height={"100%"}
+            flexDirection={"column"}
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {tasks.map((task, index) => (
+              <MyTask key={task.id} task={task} index={index} />
+            ))}
+            {provided.placeholder}
+          </Flex>
+        )}
+      </Droppable>
+    </Flex>
+  );
+};
+export default Column;

@@ -2,8 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWindowSize } from "../custom_hooks/";
+import { loginInputStore } from "../stores/index";
+
 import {
   Box,
   Button,
@@ -22,13 +24,38 @@ export default function Home() {
   const { height, width } = useWindowSize();
   const [isSigningIn, setIsSigningIn] = useState(true);
 
+  const setWorkspaceInput = loginInputStore(
+    (state) => state.set_workspace_input
+  );
+  const setPasswordInput = loginInputStore((state) => state.set_password_input);
+
+  const validateCredentialInput = loginInputStore(
+    (state) => state.validate_credential_input
+  );
+  const setIsCredentialValid = loginInputStore(
+    (state) => state.set_is_credential_valid
+  );
+
+  useEffect(() => {
+    setIsCredentialValid(false);
+  });
+
   const SignInForm = (
     <VStack alignItems={"flex-start"} padding={"10"} width={"100%"}>
       <Text color={"vimdesk_faded_text"}>Workspace</Text>
-      <Input variant={"flushed"} placeholder="workspace-name" />
+      <Input
+        variant={"flushed"}
+        placeholder="workspace-name"
+        onChange={setWorkspaceInput}
+      />
 
       <Text color={"vimdesk_faded_text"}>Password</Text>
-      <Input variant={"flushed"} type={"password"} placeholder="password" />
+      <Input
+        variant={"flushed"}
+        type={"password"}
+        placeholder="password"
+        onChange={setPasswordInput}
+      />
     </VStack>
   );
 
@@ -150,7 +177,12 @@ export default function Home() {
             <Spacer />
 
             <VStack width={"100%"} spacing={"5"} padding={"10"}>
-              <Button variant={"solid"} width={"100%"} paddingY={"7"}>
+              <Button
+                variant={"solid"}
+                width={"100%"}
+                paddingY={"7"}
+                onClick={isSigningIn && validateCredentialInput}
+              >
                 {"Let's Go!"}
               </Button>
               {isSigningIn && (

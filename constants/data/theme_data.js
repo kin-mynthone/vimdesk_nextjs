@@ -7,6 +7,7 @@ const themeData = extendTheme({
   },
   colors: {
     vimdesk_bg: "#F7FAFB",
+    vimdesk_main_bg: "#EDF2F6",
     vimdesk_blue: "#47ADDD",
     vimdesk_faded_blue: "#7DC0DF",
     vimdesk_faded_text: "#656262",
