@@ -16,7 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { loginInputStore, navigationBarStore } from "../../../stores/index";
+import { signInInputStore, navigationBarStore } from "../../../stores/index";
 
 import initialData from "../../../constants/data/initial-data";
 import Column from "../../../constants/components/kanban/column";
@@ -24,7 +24,7 @@ import Column from "../../../constants/components/kanban/column";
 export default function Home() {
   const { height, width } = useWindowSize();
 
-  const setIsCredentialValid = loginInputStore(
+  const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
 
@@ -110,7 +110,7 @@ export default function Home() {
 
   const Kanban = () => {
     return (
-      <Flex>
+      <Flex height={height * 0.85}>
         <DragDropContext onDragEnd={onDragEnd}>
           {state.columnOrder.map((columnId) => {
             const column = state.columns[columnId];

@@ -7,6 +7,10 @@ export { default as PlusSign } from "./icons/plus-sign.svg";
 export { default as DueDate } from "./icons/due-date.svg";
 export { default as CreatedAt } from "./icons/created-at.svg";
 export { default as User } from "./icons/user.svg";
+export { default as Calendar } from "./icons/calendar.svg";
+export { default as Todo } from "./icons/todo.svg";
+export { default as Notification } from "./icons/notification.svg";
+export { default as Workspace } from "./icons/workspace.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

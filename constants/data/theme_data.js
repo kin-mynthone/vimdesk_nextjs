@@ -11,7 +11,11 @@ const themeData = extendTheme({
     vimdesk_blue: "#47ADDD",
     vimdesk_faded_blue: "#7DC0DF",
     vimdesk_faded_text: "#656262",
-    vimdesk_gray: "#D7D7D7",
+    vimdesk_gray: "#9F9D9D",
+    vimdesk_lightgray: "#F2F5F6",
+    vimdesk_yellow: "#F0BE3E",
+    vimdesk_green: "#3FAD7F",
+    vimdesk_red: "#F38C8C",
   },
   components: {
     Button: {
