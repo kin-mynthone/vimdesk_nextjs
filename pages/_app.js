@@ -11,11 +11,11 @@ import {
   AccordionPanel,
   Box,
 } from "@chakra-ui/react";
-import { THEME_DATA } from "../constants/";
+import { THEME_DATA, pageTitles } from "../constants/";
 import "@fontsource/poppins";
 import Image from "next/image";
 import { useWindowSize } from "../custom_hooks";
-import { loginInputStore, navigationBarStore } from "../stores/index";
+import { signInInputStore, navigationBarStore } from "../stores/index";
 import {
   ArrowRight,
   InactiveDashboard,
@@ -43,6 +43,10 @@ import {
   VimDeskLogo,
   InactiveSales,
   ActiveSales,
+  Workspace,
+  Todo,
+  Calendar,
+  Notification,
 } from "../assets/";
 
 import { MotionButton } from "../constants/components/motion";
@@ -140,7 +144,7 @@ const NavigationBar = () => {
                     active_tab_index != 0 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Dashboard
+                  {pageTitles[0].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 0 && <VerticalLine />}
@@ -188,7 +192,7 @@ const NavigationBar = () => {
                     active_tab_index != 1 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Sales
+                  {pageTitles[1].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 1 && <VerticalLine />}
@@ -248,7 +252,7 @@ const NavigationBar = () => {
                         : "vimdesk_blue"
                     }
                   >
-                    Deals
+                    {pageTitles[1].sub_page_title[0].title}
                   </Text>
                 </Button>
                 <Button
@@ -291,7 +295,7 @@ const NavigationBar = () => {
                         : "vimdesk_blue"
                     }
                   >
-                    Estimates
+                    {pageTitles[1].sub_page_title[1].title}
                   </Text>
                 </Button>
                 <Button
@@ -334,7 +338,7 @@ const NavigationBar = () => {
                         : "vimdesk_blue"
                     }
                   >
-                    Invoices
+                    {pageTitles[1].sub_page_title[2].title}
                   </Text>
                 </Button>
                 <Button
@@ -377,7 +381,7 @@ const NavigationBar = () => {
                         : "vimdesk_blue"
                     }
                   >
-                    Periodics
+                    {pageTitles[1].sub_page_title[3].title}
                   </Text>
                 </Button>
               </Flex>
@@ -425,7 +429,7 @@ const NavigationBar = () => {
                     active_tab_index != 2 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Relations
+                  {pageTitles[2].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 2 && <VerticalLine />}
@@ -475,7 +479,7 @@ const NavigationBar = () => {
                     active_tab_index != 3 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Relations
+                  {pageTitles[3].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 3 && <VerticalLine />}
@@ -525,7 +529,7 @@ const NavigationBar = () => {
                     active_tab_index != 4 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Documents
+                  {pageTitles[4].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 4 && <VerticalLine />}
@@ -577,7 +581,7 @@ const NavigationBar = () => {
                     active_tab_index != 5 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Project Management
+                  {pageTitles[5].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 5 && <VerticalLine />}
@@ -625,7 +629,7 @@ const NavigationBar = () => {
                     active_tab_index != 6 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Files
+                  {pageTitles[6].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 6 && <VerticalLine />}
@@ -673,7 +677,7 @@ const NavigationBar = () => {
                     active_tab_index != 7 ? "vimdesk_faded_text" : "white"
                   }
                 >
-                  Tickets
+                  {pageTitles[7].title}
                 </Text>
                 <Spacer />
                 {active_tab_index == 7 && <VerticalLine />}
@@ -731,8 +735,136 @@ const NavigationBar = () => {
   );
 };
 
+const HeaderMenu = () => {
+  return (
+    <Flex flexDirection={"row"} justifyContent={"space-around"}>
+      <MotionButton
+        backgroundColor={"transparent"}
+        _focus={{ border: "none" }}
+        _focusWithin={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+        flexDirection={"row"}
+        whileTap={{
+          scale: 0.8,
+        }}
+        whileHover={{
+          scale: 1.3,
+        }}
+        onClick={null} //update this
+      >
+        <Image alt="profile" src={Notification} height={18} width={18} />
+      </MotionButton>
+      <MotionButton
+        backgroundColor={"transparent"}
+        _focus={{ border: "none" }}
+        _focusWithin={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+        flexDirection={"row"}
+        whileTap={{
+          scale: 0.8,
+        }}
+        whileHover={{
+          scale: 1.3,
+        }}
+        onClick={null} //update this
+      >
+        <Image alt="profile" src={Todo} height={18} width={18} />
+      </MotionButton>
+      <MotionButton
+        backgroundColor={"transparent"}
+        _focus={{ border: "none" }}
+        _focusWithin={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+        flexDirection={"row"}
+        whileTap={{
+          scale: 0.8,
+        }}
+        whileHover={{
+          scale: 1.3,
+        }}
+        onClick={null} //update this
+      >
+        <Image alt="profile" src={Calendar} height={18} width={18} />
+      </MotionButton>
+
+      <MotionButton
+        backgroundColor={"transparent"}
+        _focus={{ border: "none" }}
+        _focusWithin={{ backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+        flexDirection={"row"}
+        whileTap={{
+          scale: 0.8,
+        }}
+        whileHover={{
+          scale: 1.3,
+        }}
+        onClick={null} //update this
+      >
+        <Image alt="profile" src={Workspace} height={18} width={18} />
+      </MotionButton>
+    </Flex>
+  );
+};
+
+const HeaderTitle = () => {
+  const active_tab_index = navigationBarStore(
+    (state) => state.active_tab_index
+  );
+
+  const active_sales_sub_tab_index = navigationBarStore(
+    (state) => state.active_sales_sub_tab_index
+  );
+  return (
+    <Flex
+      flexDirection={"column"}
+      justifyContent={"space-around"}
+      alignItems={"start"}
+    >
+      <Text
+        fontSize={"25px"}
+        fontWeight={"600"}
+        textColor={"vimdesk_faded_text"}
+      >
+        {pageTitles[active_tab_index].title}
+      </Text>
+
+      {active_tab_index == 1 && (
+        <Flex flexDirection={"row"} justifyContent={"space-around"}>
+          <Text fontSize={"15px"} textColor={"vimdesk_faded_text"}>
+            {pageTitles[active_tab_index].title}&nbsp;&gt;&nbsp;
+          </Text>
+          <Text fontSize={"15px"} textColor={"vimdesk_blue"}>
+            {
+              pageTitles[active_tab_index].sub_page_title[
+                active_sales_sub_tab_index
+              ].title
+            }
+          </Text>
+        </Flex>
+      )}
+    </Flex>
+  );
+};
+const Header = () => {
+  const { height } = useWindowSize();
+  return (
+    <Flex
+      flexDirection={"row"}
+      marginTop={"20px"}
+      alignItems={"center"}
+      paddingLeft={"30px"}
+      justifyContent={"space-between"}
+      height={height * 0.07}
+    >
+      <HeaderTitle />
+      <HeaderMenu />
+    </Flex>
+  );
+};
+
 function MyApp({ Component, pageProps }) {
-  const IS_CREDENTIAL_VALID = loginInputStore(
+  const IS_CREDENTIAL_VALID = signInInputStore(
     (state) => state.is_credential_valid
   );
   const { width } = useWindowSize();
@@ -747,8 +879,11 @@ function MyApp({ Component, pageProps }) {
         bgColor={"vimdesk_main_bg"}
       >
         {IS_CREDENTIAL_VALID && <NavigationBar />}
-        <Flex marginTop={IS_CREDENTIAL_VALID && "80px"}>
-          <Component {...pageProps} />
+        <Flex flexDirection={"column"}>
+          {IS_CREDENTIAL_VALID && <Header />}
+          <Flex marginTop={IS_CREDENTIAL_VALID && "20px"}>
+            <Component {...pageProps} />
+          </Flex>
         </Flex>
       </Flex>
     </ChakraProvider>

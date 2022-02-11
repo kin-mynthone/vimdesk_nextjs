@@ -2,7 +2,7 @@ import { createStandaloneToast } from "@chakra-ui/react";
 import Router from "next/router";
 import create from "zustand";
 
-const loginInputStore = create((set) => ({
+const signInInputStore = create((set) => ({
   workspace_input: "",
   password_input: "",
   is_credential_valid: false,
@@ -38,4 +38,4 @@ const loginInputStore = create((set) => ({
       }
     }),
 }));
-export default loginInputStore;
+export default signInInputStore;

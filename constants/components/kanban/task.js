@@ -45,46 +45,40 @@ const MyTask = ({ task, index }) => {
               </Text>
             </Flex>
             <Flex
-              flexDirection={"row"}
-              alignItems={"center"}
-              marginLeft={"22px"}
+              flexDirection={"column"}
+              marginLeft={"23px"}
+              marginTop={"5px"}
             >
-              <Image src={User} alt="vimdesk_user" height={"22px"} />
-              <Text
-                marginLeft={"10px"}
-                fontSize={10}
-                textColor={"vimdesk_faded_text"}
-              >
-                {task.company}
-              </Text>
-            </Flex>
-            <Flex
-              flexDirection={"row"}
-              alignItems={"center"}
-              marginLeft={"22px"}
-            >
-              <Image src={DueDate} alt="vimdesk_user" height={"22px"} />
-              <Text
-                marginLeft={"10px"}
-                fontSize={10}
-                textColor={"vimdesk_faded_text"}
-              >
-                {task.due_date}
-              </Text>
-            </Flex>
-            <Flex
-              flexDirection={"row"}
-              alignItems={"center"}
-              marginLeft={"22px"}
-            >
-              <Image src={CreatedAt} alt="vimdesk_user" height={"22px"} />
-              <Text
-                marginLeft={"10px"}
-                fontSize={10}
-                textColor={"vimdesk_faded_text"}
-              >
-                {task.created_at}
-              </Text>
+              <Flex flexDirection={"row"} alignItems={"center"}>
+                <Image src={User} alt="vimdesk_user" height={"22px"} />
+                <Text
+                  marginLeft={"10px"}
+                  fontSize={10}
+                  textColor={"vimdesk_faded_text"}
+                >
+                  {task.company}
+                </Text>
+              </Flex>
+              <Flex flexDirection={"row"} alignItems={"center"}>
+                <Image src={DueDate} alt="vimdesk_user" height={"22px"} />
+                <Text
+                  marginLeft={"10px"}
+                  fontSize={10}
+                  textColor={"vimdesk_faded_text"}
+                >
+                  {task.due_date}
+                </Text>
+              </Flex>
+              <Flex flexDirection={"row"} alignItems={"center"}>
+                <Image src={CreatedAt} alt="vimdesk_user" height={"22px"} />
+                <Text
+                  marginLeft={"10px"}
+                  fontSize={10}
+                  textColor={"vimdesk_faded_text"}
+                >
+                  {task.created_at}
+                </Text>
+              </Flex>
             </Flex>
           </Flex>
         </Flex>

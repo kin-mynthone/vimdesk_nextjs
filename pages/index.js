@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "../custom_hooks/";
-import { loginInputStore } from "../stores/index";
+import { signInInputStore } from "../stores/index";
 
 import {
   Box,
@@ -17,6 +17,7 @@ import {
   Spacer,
   Text,
   VStack,
+  Icon,
 } from "@chakra-ui/react";
 import { VimDeskLogo, IndexBanner } from "../assets/";
 
@@ -24,15 +25,17 @@ export default function Home() {
   const { height, width } = useWindowSize();
   const [isSigningIn, setIsSigningIn] = useState(true);
 
-  const setWorkspaceInput = loginInputStore(
+  const setWorkspaceInput = signInInputStore(
     (state) => state.set_workspace_input
   );
-  const setPasswordInput = loginInputStore((state) => state.set_password_input);
+  const setPasswordInput = signInInputStore(
+    (state) => state.set_password_input
+  );
 
-  const validateCredentialInput = loginInputStore(
+  const validateCredentialInput = signInInputStore(
     (state) => state.validate_credential_input
   );
-  const setIsCredentialValid = loginInputStore(
+  const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
 
@@ -42,15 +45,21 @@ export default function Home() {
 
   const SignInForm = (
     <VStack alignItems={"flex-start"} padding={"10"} width={"100%"}>
-      <Text color={"vimdesk_faded_text"}>Workspace</Text>
+      <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+        Workspace
+      </Text>
       <Input
+        fontSize={"13px"}
         variant={"flushed"}
         placeholder="workspace-name"
         onChange={setWorkspaceInput}
       />
 
-      <Text color={"vimdesk_faded_text"}>Password</Text>
+      <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+        Password
+      </Text>
       <Input
+        fontSize={"13px"}
         variant={"flushed"}
         type={"password"}
         placeholder="password"
@@ -59,44 +68,116 @@ export default function Home() {
     </VStack>
   );
 
-  const SignUpForm = (
-    <VStack alignItems={"flex-start"} paddingX={10} spacing={5} width={"100%"}>
-      <HStack>
-        <VStack alignItems={"flex-start"}>
-          <Text color={"vimdesk_faded_text"}>Firstname</Text>
-          <Input variant={"flushed"} placeholder="Firstname" />
-        </VStack>
+  const CircleIconGreen = () => {
+    return (
+      <Icon viewBox="0 0 210 210" color={"vimdesk_green"} marginRight={1}>
+        <path
+          fill="currentColor"
+          d="M 100, 100 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0"
+        />
+      </Icon>
+    );
+  };
+  const CircleIconGray = () => {
+    return (
+      <Icon viewBox="0 0 220 220" color={"vimdesk_gray"} marginRight={1}>
+        <path
+          fill="none"
+          strokeWidth="20"
+          stroke="currentColor"
+          d="M 110, 110 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0"
+        />
+      </Icon>
+    );
+  };
 
-        <VStack alignItems={"flex-start"}>
-          <Text color={"vimdesk_faded_text"}>Lastname</Text>
-          <Input variant={"flushed"} placeholder="Lastname" />
+  const SignUpForm = (
+    <VStack alignItems={"flex-start"} padding={"10"} spacing={5} width={"100%"}>
+      <HStack w={"100%"}>
+        <VStack alignItems={"flex-start"} width={"100%"}>
+          <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+            Firstname
+          </Text>
+          <Input
+            variant={"flushed"}
+            placeholder="Firstname"
+            fontSize={"13px"}
+          />
+        </VStack>
+        <Spacer />
+        <VStack alignItems={"flex-start"} width={"100%"}>
+          <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+            Lastname
+          </Text>
+          <Input variant={"flushed"} placeholder="Lastname" fontSize={"13px"} />
         </VStack>
       </HStack>
+      <HStack w={"100%"}>
+        <VStack alignItems={"flex-start"} width={"100%"}>
+          <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+            Email
+          </Text>
 
+          <Input variant={"flushed"} placeholder="Email" fontSize={"13px"} />
+        </VStack>
+        <Spacer />
+        <VStack alignItems={"flex-start"} width={"100%"}>
+          <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+            Workspace
+          </Text>
+          <Input
+            variant={"flushed"}
+            placeholder="workspace-name"
+            fontSize={"13px"}
+          />
+        </VStack>
+      </HStack>
       <VStack alignItems={"flex-start"} width={"100%"}>
-        <Text color={"vimdesk_faded_text"}>Email</Text>
-        <Input variant={"flushed"} placeholder="Email" />
+        <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+          Password
+        </Text>
+        <Input
+          variant={"flushed"}
+          type={"password"}
+          placeholder="Password"
+          fontSize={"13px"}
+        />
+        <Text color={"vimdesk_yellow"} fontSize={"13px"} fontWeight={900}>
+          Seems good, we suggest to make it stronger!
+        </Text>
       </VStack>
 
-      <VStack alignItems={"flex-start"} width={"100%"}>
-        <Text color={"vimdesk_faded_text"}>Workspace</Text>
-        <Input variant={"flushed"} placeholder="workspace-name" />
+      <VStack alignItems={"flex-start"}>
+        <HStack>
+          <CircleIconGreen />
+          <Text color={"vimdesk_green"} fontSize={"xs"}>
+            Contains at least one uppercase
+          </Text>
+        </HStack>
+        <HStack>
+          <CircleIconGreen />
+          <Text color={"vimdesk_green"} fontSize={"xs"}>
+            Contains at least one number
+          </Text>
+        </HStack>
+        <HStack>
+          <CircleIconGreen />
+          <Text color={"vimdesk_green"} fontSize={"xs"}>
+            Character must be equal or more than 8 character
+          </Text>
+        </HStack>
+        <HStack>
+          <CircleIconGray />
+          <Text color={"vimdesk_gray"} fontSize={"xs"}>
+            Contains at least one special character
+          </Text>
+        </HStack>
       </VStack>
-
-      <VStack alignItems={"flex-start"} width={"100%"}>
-        <Text color={"vimdesk_faded_text"}>Password</Text>
-        <Input variant={"flushed"} type={"password"} placeholder="Password" />
-      </VStack>
-
-      <Text color={"vimdesk_faded_text"} fontSize={"xs"}>
-        Password should contain a{" "}
-        <b>number, uppercase and lowercase, and special characters.</b>
-      </Text>
     </VStack>
   );
 
   const FormNavigator = (
-    <VStack padding={"10"}>
+    <VStack paddingX={"10"} paddingTop={"10"}>
       <HStack
         backgroundColor={"vimdesk_faded_blue"}
         borderRadius={"full"}
@@ -164,9 +245,11 @@ export default function Home() {
           overflow={"hidden"}
         >
           <VStack
-            width={"50%"}
+            width={"60%"}
             background={"white"}
             shadow={"lg"}
+            height={height}
+            marginY={"50px"}
             borderRadius={"3xl"}
             alignItems={"flex-start"}
           >
@@ -174,9 +257,7 @@ export default function Home() {
 
             {isSigningIn ? SignInForm : SignUpForm}
 
-            <Spacer />
-
-            <VStack width={"100%"} spacing={"5"} padding={"10"}>
+            <VStack width={"100%"} spacing={"5"} paddingX={"10"}>
               <Button
                 variant={"solid"}
                 width={"100%"}
@@ -197,7 +278,7 @@ export default function Home() {
             <HStack
               justifyContent={"center"}
               alignItems={"flex-start"}
-              backgroundColor={"vimdesk_gray"}
+              backgroundColor={"vimdesk_lightgray"}
               width={"100%"}
               padding={"3"}
               borderBottomRadius={"3xl"}
@@ -205,15 +286,12 @@ export default function Home() {
               <Text fontSize={"xx-small"}>
                 By clicking the button above, you agree to our
               </Text>
-
               <Link>
                 <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
                   terms of use
                 </Text>
               </Link>
-
               <Text fontSize={"xx-small"}>and</Text>
-
               <Link>
                 <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
                   conditions

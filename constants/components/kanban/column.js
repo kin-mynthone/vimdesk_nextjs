@@ -4,6 +4,7 @@ import { Flex, Text, Container, Box, Spacer } from "@chakra-ui/react";
 import { Droppable } from "react-beautiful-dnd";
 import { HKebab, PlusSign } from "../../../assets";
 import Image from "next/image";
+import { MotionButton } from "../../../constants/components/motion";
 const Column = ({ column, tasks }) => {
   return (
     <Flex margin={"8px"} flexDirection={"column"}>
@@ -12,7 +13,7 @@ const Column = ({ column, tasks }) => {
         paddingX={"15px"}
         marginRight={"10px"}
         width={"250px"}
-        height={"100px"}
+        height={"60px"}
         borderRadius={13}
         marginBottom={"20px"}
         flexDirection={"row"}
@@ -35,11 +36,43 @@ const Column = ({ column, tasks }) => {
         </Text>
         <Spacer />
 
-        <Box marginRight={"18px"} paddingTop={"6px"}>
-          <Image src={HKebab} alt="vimdesk_h_kebab" height={"20px"} />
-        </Box>
-        <Image src={PlusSign} alt="vimdesk_h_kebab" height={"20px"} />
+        <MotionButton
+          size="xs"
+          backgroundColor={"transparent"}
+          _focus={{ border: "none" }}
+          _focusWithin={{ backgroundColor: "transparent" }}
+          _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+          flexDirection={"row"}
+          whileTap={{
+            scale: 0.4,
+          }}
+          whileHover={{
+            scale: 1.1,
+          }}
+          onClick={null} //update this
+        >
+          <Image src={HKebab} alt="vimdesk_h_kebab" />
+        </MotionButton>
+
+        <MotionButton
+          size="xs"
+          backgroundColor={"transparent"}
+          _focus={{ border: "none" }}
+          _focusWithin={{ backgroundColor: "transparent" }}
+          _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+          flexDirection={"row"}
+          whileTap={{
+            scale: 0.4,
+          }}
+          whileHover={{
+            scale: 1.1,
+          }}
+          onClick={null} //update this
+        >
+          <Image src={PlusSign} alt="vimdesk_h_kebab" />
+        </MotionButton>
       </Flex>
+
       <Droppable droppableId={column.id}>
         {(provided) => (
           <Flex
