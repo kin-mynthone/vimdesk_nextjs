@@ -15,6 +15,7 @@ import { THEME_DATA, pageTitles } from "../constants/";
 import "@fontsource/poppins";
 import Image from "next/image";
 import { useWindowSize } from "../custom_hooks";
+import Router from "next/router";
 import { signInInputStore, navigationBarStore } from "../stores/index";
 import {
   ArrowRight,
@@ -736,6 +737,9 @@ const NavigationBar = () => {
 };
 
 const HeaderMenu = () => {
+  const setActiveIndex = navigationBarStore(
+    (state) => state.set_active_tab_index
+  );
   return (
     <Flex flexDirection={"row"} justifyContent={"space-around"}>
       <MotionButton
@@ -782,7 +786,12 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={null} //update this
+        onClick={() => {
+          setActiveIndex(10);
+          Router.push({
+            pathname: "/reminders",
+          });
+        }}
       >
         <Image alt="profile" src={Calendar} height={18} width={18} />
       </MotionButton>
