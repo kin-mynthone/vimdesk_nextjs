@@ -161,6 +161,24 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(1);
+                switch (active_sales_sub_tab_index) {
+                  case 0:
+                    Router.push({
+                      pathname: "/sales/deals",
+                    });
+                    break;
+                  case 1:
+                    // code block
+                    break;
+                  case 2:
+                    // code block
+                    break;
+                  case 3:
+                    // code block
+                    break;
+                  default:
+                  // code block
+                }
               }}
             >
               <Flex
@@ -230,6 +248,9 @@ const NavigationBar = () => {
                   }}
                   onClick={() => {
                     setActiveSalesSubIndex(0);
+                    Router.push({
+                      pathname: "/sales/deals",
+                    });
                   }}
                 >
                   <Image
@@ -857,10 +878,12 @@ const HeaderTitle = () => {
 };
 const Header = () => {
   const { height } = useWindowSize();
+  const { width } = useWindowSize();
   return (
     <Flex
       flexDirection={"row"}
       marginTop={"20px"}
+      width={width * 0.82}
       alignItems={"center"}
       paddingLeft={"30px"}
       justifyContent={"space-between"}
