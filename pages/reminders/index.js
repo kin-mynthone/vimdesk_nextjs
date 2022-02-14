@@ -17,7 +17,11 @@ import {
 
 import { signInInputStore, navigationBarStore } from "../../stores/index";
 
-export default function Home() {
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+export default function Reminders() {
   const { height, width } = useWindowSize();
 
   const setIsCredentialValid = signInInputStore(
@@ -27,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     setIsCredentialValid(true);
   });
-
+  const localizer = momentLocalizer(moment);
   return (
     <Flex
       alignItems={"stretch"}
@@ -38,6 +42,14 @@ export default function Home() {
       style={{
         overflow: "auto",
       }}
-    ></Flex>
+    >
+      <Calendar
+        localizer={localizer}
+        defaultDate={new Date()}
+        defaultView="month"
+        // events={this.state.events}
+        style={{ height: "80vh" }}
+      />
+    </Flex>
   );
 }
