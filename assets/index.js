@@ -11,6 +11,9 @@ export { default as Calendar } from "./icons/calendar.svg";
 export { default as Todo } from "./icons/todo.svg";
 export { default as Notification } from "./icons/notification.svg";
 export { default as Workspace } from "./icons/workspace.svg";
+export { default as ThinArrowLeft } from "./icons/thin-left-arrow.svg";
+export { default as ThinArrowRight } from "./icons/thin-right-arrow.svg";
+export { default as CalendarToday } from "./icons/calendar-today.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

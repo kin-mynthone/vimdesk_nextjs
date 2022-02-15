@@ -16,11 +16,14 @@ import {
   Hide,
 } from "@chakra-ui/react";
 
+import { MotionButton } from "../../constants/components/motion";
+
 import { signInInputStore, navigationBarStore } from "../../stores/index";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 //import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { ThinArrowLeft, ThinArrowRight, CalendarToday } from "../../assets";
 
 export default function Reminders() {
   const { height, width } = useWindowSize();
@@ -32,7 +35,7 @@ export default function Reminders() {
   useEffect(() => {
     setIsCredentialValid(true);
   });
-  //const localizer = momentLocalizer();
+  //const localizer = momentLocalizer(moment);
 
   const QuickView = () => {
     return (
@@ -55,7 +58,7 @@ export default function Reminders() {
   const MyCalendar = () => {
     return (
       <Flex
-        alignItems={"stretch"}
+        alignItems={"center"}
         flexDirection={"column"}
         padding={"30px"}
         height={"100%"}
@@ -69,38 +72,200 @@ export default function Reminders() {
           marginTop={"10px"}
           flexDirection={"row"}
           justifyContent={"center"}
-          width={"100%"}
+          width={width * 0.55}
           marginBottom={"50px"}
+          alignItems={"center"}
         >
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={20}>
-            February
-          </Text>
+          <Flex
+            paddingY={"10px"}
+            paddingX={"30px"}
+            marginLeft={"8px"}
+            borderRadius={10}
+            borderWidth={1}
+            borderColor={"vimdesk_blue"}
+            flexDirection={"row"}
+            justifyContent={"start"}
+            alignItems={"center"}
+            backgroundColor={"#F7FAFB"}
+          >
+            <Image
+              src={CalendarToday}
+              alt="vimdesk_logo"
+              height={15}
+              width={15}
+            />
+            <Text
+              textColor={"vimdesk_faded_text"}
+              marginLeft={"10px"}
+              fontWeight={300}
+              fontSize={13}
+            >
+              Sunday, Mar 6, 2021
+            </Text>
+          </Flex>
+          <Spacer />
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <MotionButton
+              backgroundColor={"transparent"}
+              _focus={{ border: "none" }}
+              _focusWithin={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+              flexDirection={"row"}
+              whileTap={{
+                scale: 0.8,
+              }}
+              whileHover={{
+                scale: 1.3,
+              }}
+              onClick={null} //update this
+            >
+              <Image
+                src={ThinArrowLeft}
+                alt="vimdesk_logo"
+                height={15}
+                width={15}
+              />
+            </MotionButton>
+
+            <Text
+              textColor={"vimdesk_faded_text"}
+              fontWeight={300}
+              fontSize={18}
+              marginX={"25px"}
+            >
+              February
+            </Text>
+
+            <MotionButton
+              backgroundColor={"transparent"}
+              _focus={{ border: "none" }}
+              _focusWithin={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+              flexDirection={"row"}
+              whileTap={{
+                scale: 0.8,
+              }}
+              whileHover={{
+                scale: 1.3,
+              }}
+              onClick={null} //update this
+            >
+              <Image
+                src={ThinArrowRight}
+                alt="vimdesk_logo"
+                height={15}
+                width={15}
+              />
+            </MotionButton>
+          </Flex>
+          <Spacer />
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
+            <MotionButton
+              backgroundColor={"transparent"}
+              size="xs"
+              _focus={{ border: "none" }}
+              _focusWithin={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+              whileTap={{
+                scale: 0.4,
+              }}
+              whileHover={{
+                scale: 1.1,
+              }}
+              onClick={null} //update this
+            >
+              <Flex
+                padding={"12px"}
+                width={"70px"}
+                borderRadius={10}
+                flexDirection={"row"}
+                alignItems={"center"}
+                backgroundColor={"white"}
+                justifyContent={"center"}
+                alignContent={"center"}
+                borderColor={"vimdesk_blue"}
+                borderWidth={1}
+              >
+                <Text
+                  textColor={"vimdesk_faded_text"}
+                  fontWeight={300}
+                  fontSize={13}
+                >
+                  Year
+                </Text>
+              </Flex>
+            </MotionButton>
+            <MotionButton
+              size="xs"
+              backgroundColor={"transparent"}
+              _focus={{ border: "none" }}
+              _focusWithin={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+              whileTap={{
+                scale: 0.4,
+              }}
+              whileHover={{
+                scale: 1.1,
+              }}
+              onClick={null} //update this
+            >
+              <Flex
+                padding={"12px"}
+                width={"70px"}
+                borderRadius={10}
+                flexDirection={"row"}
+                alignItems={"center"}
+                backgroundColor={"white"}
+                justifyContent={"center"}
+                alignContent={"center"}
+                borderColor={"vimdesk_blue"}
+                borderWidth={1}
+              >
+                <Text
+                  textColor={"vimdesk_faded_text"}
+                  fontWeight={300}
+                  fontSize={13}
+                >
+                  Month
+                </Text>
+              </Flex>
+            </MotionButton>
+          </Flex>
         </Flex>
 
         <Flex
           flexDirection={"row"}
           justifyContent={"space-around"}
           marginBottom={"15px"}
+          width={width * 0.55}
         >
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Sun
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Mon
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Tue
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Wed
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Thu
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Fri
           </Text>
-          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Sat
           </Text>
         </Flex>
