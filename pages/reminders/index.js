@@ -32,7 +32,7 @@ export default function Reminders() {
   useEffect(() => {
     setIsCredentialValid(true);
   });
-  //const localizer = momentLocalizer(moment);
+  //const localizer = momentLocalizer();
 
   const QuickView = () => {
     return (
@@ -56,7 +56,7 @@ export default function Reminders() {
     return (
       <Flex
         alignItems={"stretch"}
-        flexDirection={"row"}
+        flexDirection={"column"}
         padding={"30px"}
         height={"100%"}
         borderRadius={13}
@@ -65,16 +65,58 @@ export default function Reminders() {
           boxShadow: "0px 0px 5px 0px #DDDDDD",
         }}
       >
+        <Flex
+          marginTop={"10px"}
+          flexDirection={"row"}
+          justifyContent={"center"}
+          width={"100%"}
+          marginBottom={"50px"}
+        >
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={20}>
+            February
+          </Text>
+        </Flex>
+
+        <Flex
+          flexDirection={"row"}
+          justifyContent={"space-around"}
+          marginBottom={"15px"}
+        >
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Sun
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Mon
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Tue
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Wed
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Thu
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Fri
+          </Text>
+          <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={15}>
+            Sat
+          </Text>
+        </Flex>
+
         <Calendar
           localizer={localizer}
           defaultDate={new Date()}
           startAccessor="start"
           endAccessor="end"
+          bgColor={"black"}
           components={{
             toolbar: Hide,
+            header: Hide,
           }}
           // events={this.state.events}
-          style={{ height: "70vh", width: width * 0.55 }}
+          style={{ height: "60vh", width: width * 0.55 }}
         />
       </Flex>
     );
