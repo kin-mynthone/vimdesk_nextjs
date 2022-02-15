@@ -20,7 +20,7 @@ const Column = ({ column, tasks }) => {
         alignItems={"center"}
         backgroundColor={"#F7FAFB"}
         style={{
-          boxShadow: "0px 0px 5px 0px #CCCCCC",
+          boxShadow: "0px 0px 5px 0px #DDDDDD",
         }}
       >
         <Box
