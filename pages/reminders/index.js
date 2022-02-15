@@ -46,9 +46,10 @@ export default function Reminders() {
       <Calendar
         localizer={localizer}
         defaultDate={new Date()}
-        defaultView="month"
+        startAccessor="start"
+        endAccessor="end"
         // events={this.state.events}
-        style={{ height: "80vh" }}
+        style={{ height: "80vh", width: width * 0.6 }}
       />
     </Flex>
   );

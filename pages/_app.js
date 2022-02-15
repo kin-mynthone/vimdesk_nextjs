@@ -129,7 +129,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={
                     active_tab_index != 0 ? InactiveDashboard : ActiveDashboard
                   }
@@ -197,7 +197,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={active_tab_index != 1 ? InactiveSales : ActiveSales}
                   height={20}
                   width={20}
@@ -254,7 +254,7 @@ const NavigationBar = () => {
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk_icon"
                     src={
                       active_sales_sub_tab_index != 0
                         ? InactiveDeals
@@ -297,7 +297,7 @@ const NavigationBar = () => {
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk_icon"
                     src={
                       active_sales_sub_tab_index != 1
                         ? InactiveEstimates
@@ -340,7 +340,7 @@ const NavigationBar = () => {
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk_icon"
                     src={
                       active_sales_sub_tab_index != 2
                         ? InactiveInvoice
@@ -383,7 +383,7 @@ const NavigationBar = () => {
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk_icon"
                     src={
                       active_sales_sub_tab_index != 3
                         ? InactivePeriodic
@@ -435,7 +435,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={
                     active_tab_index != 2 ? InactiveRelations : ActiveRelations
                   }
@@ -485,7 +485,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={
                     active_tab_index != 3 ? InactiveProducts : ActiveProducts
                   }
@@ -535,7 +535,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={
                     active_tab_index != 4 ? InactiveDocuments : ActiveDocuments
                   }
@@ -585,7 +585,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={
                     active_tab_index != 5
                       ? InactiveProjectManagement
@@ -637,7 +637,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={active_tab_index != 6 ? InactiveFiles : ActiveFiles}
                   height={20}
                   width={20}
@@ -685,7 +685,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk_icon"
                   src={active_tab_index != 7 ? InactiveTickets : ActiveTickets}
                   height={20}
                   width={20}
@@ -733,7 +733,7 @@ const NavigationBar = () => {
           borderRadius={"full"}
         >
           <Image
-            alt="ctag"
+            alt="vimdesk_icon"
             src={
               "https://firebasestorage.googleapis.com/v0/b/itsy-39bff.appspot.com/o/RDJ-Tony-Stark.jpeg?alt=media&token=facd6754-838b-4e2c-ae59-e898f8cdde01"
             }
@@ -885,7 +885,7 @@ const Header = () => {
       marginTop={"20px"}
       width={width * 0.82}
       alignItems={"center"}
-      paddingLeft={"30px"}
+      paddingX={"20px"}
       justifyContent={"space-between"}
       height={height * 0.07}
     >
