@@ -21,7 +21,7 @@ import { MotionButton } from "../../constants/components/motion";
 import { signInInputStore, navigationBarStore } from "../../stores/index";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
-//import moment from "moment";
+import moment from "moment";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { ThinArrowLeft, ThinArrowRight, CalendarToday } from "../../assets";
@@ -36,7 +36,7 @@ export default function Reminders() {
   useEffect(() => {
     setIsCredentialValid(true);
   });
-  //const localizer = momentLocalizer(moment);
+  const localizer = momentLocalizer(moment);
 
   const QuickView = () => {
     return (
@@ -276,13 +276,12 @@ export default function Reminders() {
 
         <Calendar
           localizer={localizer}
-          defaultDate={new Date()}
+          // events={events}
+          popup
           startAccessor="start"
           endAccessor="end"
-          bgColor={"black"}
           components={{
-            toolbar: Hide,
-            header: Hide,
+            toolbar: "Hide",
           }}
           // events={this.state.events}
           style={{ height: "60vh", width: width * 0.55 }}
@@ -304,7 +303,7 @@ export default function Reminders() {
       }}
     >
       <QuickView />
-      {/* <MyCalendar /> */}
+      <MyCalendar />
     </Flex>
   );
 }
