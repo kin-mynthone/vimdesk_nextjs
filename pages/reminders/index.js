@@ -22,6 +22,7 @@ import { signInInputStore, navigationBarStore } from "../../stores/index";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 //import moment from "moment";
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { ThinArrowLeft, ThinArrowRight, CalendarToday } from "../../assets";
 
@@ -87,6 +88,9 @@ export default function Reminders() {
             justifyContent={"start"}
             alignItems={"center"}
             backgroundColor={"#F7FAFB"}
+            style={{
+              boxShadow: "0px 0px 5px 0px #DDDDDD",
+            }}
           >
             <Image
               src={CalendarToday}
