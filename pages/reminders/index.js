@@ -282,9 +282,15 @@ export default function Reminders() {
           endAccessor="end"
           components={{
             toolbar: "Hide",
+            header: "Hide",
           }}
-          // events={this.state.events}
-          style={{ height: "60vh", width: width * 0.55 }}
+          // events={events}
+          style={{
+            height: "60vh",
+            width: width * 0.55,
+            fontSize: 13,
+            fontWeight: 300,
+          }}
         />
       </Flex>
     );
