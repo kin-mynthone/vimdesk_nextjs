@@ -27,13 +27,15 @@ import {
   Toolbar,
 } from "react-big-calendar";
 import moment from "moment";
+import events from "../../constants/data/events";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { ThinArrowLeft, ThinArrowRight, CalendarToday } from "../../assets";
 
 export default function Reminders() {
   const { height, width } = useWindowSize();
-
+  const DnDCalendar = withDragAndDrop(BigCalendar);
   const dateNow = new Date();
   const monthNowIndex = dateNow.getMonth();
   const setIsCredentialValid = signInInputStore(
@@ -64,6 +66,42 @@ export default function Reminders() {
   );
 
   const selectedMonth = remindersStore((state) => state.selected_month);
+
+  const [myEvent, setmyEvent] = useState(events);
+
+  const eventStyleGetter = (event) => {
+    var backgroundColor = "#" + event.hexColor;
+    var style = {
+      backgroundColor: backgroundColor,
+      borderRadius: "30px",
+      opacity: 0.8,
+      color: "white",
+      padding: "3px",
+      border: "0px",
+      width: "95%",
+      marginLeft: "3%",
+      display: "block",
+      paddingLeft: "10px",
+      paddingRight: "10px",
+    };
+    return {
+      style: style,
+    };
+  };
+
+  // const onEventResize = (data) => {
+  //   const { start, end } = data;
+
+  //   setState((state) => {
+  //     state.events[0].start = start;
+  //     state.events[0].end = end;
+  //     return { events: [...state.events] };
+  //   });
+  // };
+
+  // const onEventDrop = (data) => {
+  //   console.log(data);
+  // };
 
   useEffect(() => {
     if (selectedMonth == "none") {
@@ -280,7 +318,7 @@ export default function Reminders() {
                 scale: ActiveCalendarView != "week" ? 1.1 : 1.0,
               }}
               onClick={() => {
-                setActiveCalendarView("week");
+                // setActiveCalendarView("week");
               }} //update this
             >
               <Flex
@@ -358,7 +396,7 @@ export default function Reminders() {
           </Flex>
         </Flex>
 
-        {/* <Flex
+        <Flex
           flexDirection={"row"}
           justifyContent={"space-around"}
           marginBottom={"15px"}
@@ -385,11 +423,14 @@ export default function Reminders() {
           <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Sat
           </Text>
-        </Flex> */}
+        </Flex>
 
         <BigCalendar
           localizer={localizer}
-          // events={events}
+          events={myEvent}
+          // onEventDrop={onEventDrop}
+          // onEventResize={onEventResize}
+          resizable
           views={["month", "week"]}
           popup
           //formats={formats}
@@ -397,14 +438,14 @@ export default function Reminders() {
           view={ActiveCalendarView}
           onNavigate={onNavigateToday}
           defaultView="month"
-          scrollToTime={new Date(1970, 1, 1, 6)}
-          startAccessor="startDate"
-          endAccessor="endDate"
+          startAccessor="start"
+          endAccessor="end"
           defaultDate={moment().toDate()}
           date={selectedMonthDate}
+          eventPropGetter={eventStyleGetter}
           components={{
             toolbar: "hide",
-            //header: "hide",
+            header: "hide",
           }}
           style={{
             height: "60vh",
