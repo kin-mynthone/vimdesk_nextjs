@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useWindowSize } from "../../custom_hooks/";
 import {
   Box,
@@ -18,9 +18,14 @@ import {
 
 import { MotionButton } from "../../constants/components/motion";
 
-import { signInInputStore, navigationBarStore } from "../../stores/index";
+import { signInInputStore } from "../../stores/index";
+import { remindersStore } from "../../stores/Reminders";
 
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import {
+  Calendar as BigCalendar,
+  momentLocalizer,
+  Toolbar,
+} from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -29,14 +34,76 @@ import { ThinArrowLeft, ThinArrowRight, CalendarToday } from "../../assets";
 export default function Reminders() {
   const { height, width } = useWindowSize();
 
+  const dateNow = new Date();
+  const monthNowIndex = dateNow.getMonth();
   const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
 
+  const setSelectedMonthDate = remindersStore(
+    (state) => state.set_selected_month_date
+  );
+
+  const setSelectedMonthIndex = remindersStore(
+    (state) => state.set_selected_month_index
+  );
+
+  const selectedMonthDate = remindersStore(
+    (state) => state.selected_month_date
+  );
+
+  const selectedMonthIndex = remindersStore(
+    (state) => state.selected_month_index
+  );
+
+  const selectedMonth = remindersStore((state) => state.selected_month);
+
   useEffect(() => {
+    if (selectedMonth == "none") {
+      setSelectedMonthIndex(monthNowIndex);
+    }
+
     setIsCredentialValid(true);
   });
   const localizer = momentLocalizer(moment);
+
+  const getSelectedMonth = ({ selected_month }) => {
+    const date = new Date();
+    date.setMonth(selected_month);
+
+    const firstDayOfMonth = moment(
+      new Date(date.getFullYear(), date.getMonth())
+    ).format("MM/DD/YYYY");
+
+    setSelectedMonthDate(firstDayOfMonth);
+  };
+
+  const onNavigatePrev = () => {
+    if (selectedMonthIndex != 0) {
+      setSelectedMonthIndex(selectedMonthIndex - 1);
+      getSelectedMonth({
+        selected_month: selectedMonthIndex - 1,
+      });
+    }
+  };
+
+  const onNavigateNext = () => {
+    if (selectedMonthIndex != 11) {
+      setSelectedMonthIndex(selectedMonthIndex + 1);
+
+      getSelectedMonth({
+        selected_month: selectedMonthIndex + 1,
+      });
+    }
+  };
+
+  const onNavigateToday = () => {
+    setSelectedMonthIndex(monthNowIndex);
+
+    getSelectedMonth({
+      selected_month: monthNowIndex,
+    });
+  };
 
   const QuickView = () => {
     return (
@@ -104,7 +171,7 @@ export default function Reminders() {
               fontWeight={300}
               fontSize={13}
             >
-              Sunday, Mar 6, 2021
+              {moment(new Date(new Date())).format("dddd, MMM DD, yyyy")}
             </Text>
           </Flex>
           <Spacer />
@@ -125,7 +192,7 @@ export default function Reminders() {
               whileHover={{
                 scale: 1.3,
               }}
-              onClick={null} //update this
+              onClick={onNavigatePrev} //update this
             >
               <Image
                 src={ThinArrowLeft}
@@ -139,9 +206,11 @@ export default function Reminders() {
               textColor={"vimdesk_faded_text"}
               fontWeight={300}
               fontSize={18}
+              width={"110px"}
+              textAlign={"center"}
               marginX={"25px"}
             >
-              February
+              {selectedMonth}
             </Text>
 
             <MotionButton
@@ -156,7 +225,7 @@ export default function Reminders() {
               whileHover={{
                 scale: 1.3,
               }}
-              onClick={null} //update this
+              onClick={onNavigateNext} //update this
             >
               <Image
                 src={ThinArrowRight}
@@ -184,7 +253,7 @@ export default function Reminders() {
               whileHover={{
                 scale: 1.1,
               }}
-              onClick={null} //update this
+              onClick={onNavigateToday} //update this
             >
               <Flex
                 padding={"12px"}
@@ -203,7 +272,7 @@ export default function Reminders() {
                   fontWeight={300}
                   fontSize={13}
                 >
-                  Year
+                  Today
                 </Text>
               </Flex>
             </MotionButton>
@@ -274,17 +343,20 @@ export default function Reminders() {
           </Text>
         </Flex>
 
-        <Calendar
+        <BigCalendar
           localizer={localizer}
           // events={events}
           popup
+          selectable
+          defaultView="month"
           startAccessor="start"
           endAccessor="end"
+          defaultDate={dateNow}
+          date={selectedMonthDate}
           components={{
             toolbar: "Hide",
             header: "Hide",
           }}
-          // events={events}
           style={{
             height: "60vh",
             width: width * 0.55,
