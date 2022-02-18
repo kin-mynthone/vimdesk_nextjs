@@ -40,6 +40,13 @@ export default function Reminders() {
     (state) => state.set_is_credential_valid
   );
 
+  const setActiveCalendarView = remindersStore(
+    (state) => state.set_active_calendar_view
+  );
+  const ActiveCalendarView = remindersStore(
+    (state) => state.active_calendar_view
+  );
+
   const setSelectedMonthDate = remindersStore(
     (state) => state.set_selected_month_date
   );
@@ -122,6 +129,10 @@ export default function Reminders() {
       ></Flex>
     );
   };
+  // const formats = {
+  //   weekdayFormat: (date, culture, localizer) =>
+  //     localizer.format(date, "ddd", culture),
+  // };
 
   const MyCalendar = () => {
     return (
@@ -144,36 +155,51 @@ export default function Reminders() {
           marginBottom={"50px"}
           alignItems={"center"}
         >
-          <Flex
-            paddingY={"10px"}
-            paddingX={"30px"}
-            marginLeft={"8px"}
-            borderRadius={10}
-            borderWidth={1}
-            borderColor={"vimdesk_blue"}
-            flexDirection={"row"}
-            justifyContent={"start"}
-            alignItems={"center"}
-            backgroundColor={"#F7FAFB"}
-            style={{
-              boxShadow: "0px 0px 5px 0px #DDDDDD",
+          <MotionButton
+            backgroundColor={"transparent"}
+            size="xs"
+            _focus={{ border: "none" }}
+            _focusWithin={{ backgroundColor: "transparent" }}
+            _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+            whileTap={{
+              scale: 0.8,
             }}
+            whileHover={{
+              scale: 1.1,
+            }}
+            onClick={onNavigateToday} //update this
           >
-            <Image
-              src={CalendarToday}
-              alt="vimdesk_logo"
-              height={15}
-              width={15}
-            />
-            <Text
-              textColor={"vimdesk_faded_text"}
-              marginLeft={"10px"}
-              fontWeight={300}
-              fontSize={13}
+            <Flex
+              paddingY={"10px"}
+              paddingX={"30px"}
+              marginLeft={"8px"}
+              borderRadius={10}
+              borderWidth={1}
+              borderColor={"vimdesk_light_purple"}
+              flexDirection={"row"}
+              justifyContent={"start"}
+              alignItems={"center"}
+              backgroundColor={"#F7FAFB"}
+              style={{
+                boxShadow: "0px 0px 5px 0px #DDDDDD",
+              }}
             >
-              {moment(new Date(new Date())).format("dddd, MMM DD, yyyy")}
-            </Text>
-          </Flex>
+              <Image
+                src={CalendarToday}
+                alt="vimdesk_logo"
+                height={15}
+                width={15}
+              />
+              <Text
+                textColor={"vimdesk_light_purple"}
+                marginLeft={"10px"}
+                fontWeight={300}
+                fontSize={13}
+              >
+                {moment(new Date(new Date())).format("dddd, MMM DD, yyyy")}
+              </Text>
+            </Flex>
+          </MotionButton>
           <Spacer />
           <Flex
             flexDirection={"row"}
@@ -242,68 +268,86 @@ export default function Reminders() {
             alignItems={"center"}
           >
             <MotionButton
+              size="xxs"
               backgroundColor={"transparent"}
-              size="xs"
               _focus={{ border: "none" }}
               _focusWithin={{ backgroundColor: "transparent" }}
               _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
               whileTap={{
-                scale: 0.4,
+                scale: ActiveCalendarView != "week" ? 0.8 : 1.0,
               }}
               whileHover={{
-                scale: 1.1,
+                scale: ActiveCalendarView != "week" ? 1.1 : 1.0,
               }}
-              onClick={onNavigateToday} //update this
+              onClick={() => {
+                setActiveCalendarView("week");
+              }} //update this
             >
               <Flex
-                padding={"12px"}
+                paddingY={"10px"}
                 width={"70px"}
+                marginLeft={"8px"}
                 borderRadius={10}
-                flexDirection={"row"}
-                alignItems={"center"}
-                backgroundColor={"white"}
-                justifyContent={"center"}
-                alignContent={"center"}
-                borderColor={"vimdesk_blue"}
                 borderWidth={1}
+                borderColor={
+                  ActiveCalendarView == "week" ? "vimdesk_blue" : "vimdesk_gray"
+                }
+                flexDirection={"column"}
+                justifyContent={"start"}
+                alignItems={"center"}
+                backgroundColor={"#F7FAFB"}
               >
                 <Text
-                  textColor={"vimdesk_faded_text"}
+                  textColor={
+                    ActiveCalendarView == "week"
+                      ? "vimdesk_blue"
+                      : "vimdesk_gray"
+                  }
                   fontWeight={300}
                   fontSize={13}
                 >
-                  Today
+                  Week
                 </Text>
               </Flex>
             </MotionButton>
             <MotionButton
-              size="xs"
+              size="xxs"
               backgroundColor={"transparent"}
               _focus={{ border: "none" }}
               _focusWithin={{ backgroundColor: "transparent" }}
               _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
               whileTap={{
-                scale: 0.4,
+                scale: ActiveCalendarView != "month" ? 0.8 : 1.0,
               }}
               whileHover={{
-                scale: 1.1,
+                scale: ActiveCalendarView != "month" ? 1.1 : 1.0,
               }}
-              onClick={null} //update this
+              onClick={() => {
+                setActiveCalendarView("month");
+              }} //update this
             >
               <Flex
-                padding={"12px"}
+                paddingY={"10px"}
                 width={"70px"}
+                marginLeft={"8px"}
                 borderRadius={10}
-                flexDirection={"row"}
-                alignItems={"center"}
-                backgroundColor={"white"}
-                justifyContent={"center"}
-                alignContent={"center"}
-                borderColor={"vimdesk_blue"}
                 borderWidth={1}
+                borderColor={
+                  ActiveCalendarView == "month"
+                    ? "vimdesk_blue"
+                    : "vimdesk_gray"
+                }
+                flexDirection={"column"}
+                justifyContent={"start"}
+                alignItems={"center"}
+                backgroundColor={"#F7FAFB"}
               >
                 <Text
-                  textColor={"vimdesk_faded_text"}
+                  textColor={
+                    ActiveCalendarView == "month"
+                      ? "vimdesk_blue"
+                      : "vimdesk_gray"
+                  }
                   fontWeight={300}
                   fontSize={13}
                 >
@@ -314,7 +358,7 @@ export default function Reminders() {
           </Flex>
         </Flex>
 
-        <Flex
+        {/* <Flex
           flexDirection={"row"}
           justifyContent={"space-around"}
           marginBottom={"15px"}
@@ -341,21 +385,26 @@ export default function Reminders() {
           <Text textColor={"vimdesk_faded_text"} fontWeight={300} fontSize={13}>
             Sat
           </Text>
-        </Flex>
+        </Flex> */}
 
         <BigCalendar
           localizer={localizer}
           // events={events}
+          views={["month", "week"]}
           popup
+          //formats={formats}
           selectable
+          view={ActiveCalendarView}
+          onNavigate={onNavigateToday}
           defaultView="month"
-          startAccessor="start"
-          endAccessor="end"
-          defaultDate={dateNow}
+          scrollToTime={new Date(1970, 1, 1, 6)}
+          startAccessor="startDate"
+          endAccessor="endDate"
+          defaultDate={moment().toDate()}
           date={selectedMonthDate}
           components={{
-            toolbar: "Hide",
-            header: "Hide",
+            toolbar: "hide",
+            //header: "hide",
           }}
           style={{
             height: "60vh",
