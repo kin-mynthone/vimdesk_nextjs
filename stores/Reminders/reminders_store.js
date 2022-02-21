@@ -7,8 +7,12 @@ const remindersStore = create((set) => ({
   selected_month_index: 0,
   selected_month: "none",
   selected_year: "none",
+  event_title: "",
+  event_desc: "",
 
   active_calendar_view: "month",
+  set_event_title: (value) => set((state) => ({ event_title: value })),
+  set_event_desc: (value) => set((state) => ({ event_desc: value })),
 
   set_selected_year: (value) => set((state) => ({ selected_year: value })),
 

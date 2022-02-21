@@ -5,6 +5,7 @@ const events = [
     allDay: true,
     start: new Date(2022, 3, 0),
     end: new Date(2022, 3, 1),
+    desc: "",
     hexColor: "47ADDD",
   },
   {
@@ -12,6 +13,7 @@ const events = [
     title: "Long Event",
     start: new Date(2022, 3, 7),
     end: new Date(2022, 3, 10),
+    desc: "",
     hexColor: "F38C8C",
   },
 
@@ -20,6 +22,7 @@ const events = [
     title: "DTS STARTS",
     start: new Date(2016, 2, 13, 0, 0, 0),
     end: new Date(2016, 2, 20, 0, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
 
@@ -28,6 +31,7 @@ const events = [
     title: "DTS ENDS",
     start: new Date(2016, 10, 6, 0, 0, 0),
     end: new Date(2016, 10, 13, 0, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
 
@@ -36,6 +40,7 @@ const events = [
     title: "Some Event",
     start: new Date(2022, 3, 9, 0, 0, 0),
     end: new Date(2022, 3, 9, 0, 0, 0),
+    desc: "",
     hexColor: "47ADDD",
   },
   {
@@ -67,6 +72,7 @@ const events = [
     title: "Meeting",
     start: new Date(2022, 3, 12, 14, 0, 0, 0),
     end: new Date(2022, 3, 12, 15, 0, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
   {
@@ -82,6 +88,7 @@ const events = [
     title: "Dinner",
     start: new Date(2022, 3, 12, 20, 0, 0, 0),
     end: new Date(2022, 3, 12, 21, 0, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
   {
@@ -89,6 +96,7 @@ const events = [
     title: "Birthday Party",
     start: new Date(2022, 3, 13, 7, 0, 0),
     end: new Date(2022, 3, 13, 10, 30, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
   {
@@ -96,6 +104,7 @@ const events = [
     title: "Late Night Event",
     start: new Date(2022, 3, 17, 19, 30, 0),
     end: new Date(2022, 3, 18, 2, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
   {
@@ -103,6 +112,7 @@ const events = [
     title: "Multi-day Event",
     start: new Date(2022, 3, 20, 19, 30, 0),
     end: new Date(2022, 3, 22, 2, 0, 0),
+    desc: "",
     hexColor: "F38C8C",
   },
   {
@@ -110,6 +120,7 @@ const events = [
     title: "Today",
     start: new Date(new Date().setHours(new Date().getHours() - 3)),
     end: new Date(new Date().setHours(new Date().getHours() + 3)),
+    desc: "",
     hexColor: "F38C8C",
   },
 ];
