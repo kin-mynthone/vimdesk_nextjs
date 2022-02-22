@@ -256,9 +256,9 @@ export default function Reminders() {
   };
 
   const YearButton = () => {
-    const currentYear = new Date().getFullYear(),
-      years = [];
-    const startYear = 2010;
+    const currentYear = new Date().getFullYear();
+    let years = [];
+    let startYear = 2010;
     while (startYear <= currentYear + 20) {
       years.push(startYear++);
     }
@@ -294,14 +294,7 @@ export default function Reminders() {
         }}
         value={selectedYear}
         onChange={handleChange}
-        icon={
-          <Image
-            src={ArrowDown}
-            alt="vimdesk_icon"
-            height={"7px"}
-            width={"30px"}
-          />
-        }
+        iconColor="vimdesk_gray"
       >
         {years.map((value, index) => (
           <option key={index + 1} value={value}>
@@ -432,12 +425,8 @@ export default function Reminders() {
           // onEventDrop={onEventDrop}
           // onEventResize={onEventResize}
           resizable
-          views={["month", "week"]}
           popup
-          //formats={formats}
           selectable
-          view={ActiveCalendarView}
-          onNavigate={onNavigateToday}
           defaultView="month"
           startAccessor="start"
           endAccessor="end"
