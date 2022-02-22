@@ -6,26 +6,22 @@ const login = ({email,password}) => {
 
     const endpoint = "/login";
     
-    const headers = 
-    {
-        headers:{
-            Accept: "application/json"
-        }
-    }
-    
     const data = 
     {
-        email:email,
-        password:password,
+        email:      email,
+        password:   password,
     };
 
-    API.post(endpoint,data,headers)
+    API.post(endpoint,data)
     .then(responseCallback)
     .catch(errorHandlingCallback);
 }
 
 const responseCallback = (response) => {
     alert(response.body);
+    //TODO: once session_token is received, uncomment the code below and replace "token-value-here"
+    //with the real session token from the reponse
+    //localStorage.setItem("session_token",token-value-here);
     Router.push({
             pathname: "/sales/deals",
     });

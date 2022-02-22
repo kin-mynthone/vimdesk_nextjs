@@ -6,10 +6,10 @@ const add_user_to_workspace = ({workspace_id,first_name,last_name,email,password
 
     const data = 
     {
-        first_name:first_name,
-        last_name:last_name,
-        email:email,
-        password:password
+        first_name:     first_name,
+        last_name:      last_name,
+        email:          email,
+        password:       password
     };
 
     API.post(endpoint,data)

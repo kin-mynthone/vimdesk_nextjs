@@ -1,7 +1,6 @@
 import {API} from '../index';
 
 const me = () => {
-    
     const endpoint = "/me";
 
     API.get(endpoint)

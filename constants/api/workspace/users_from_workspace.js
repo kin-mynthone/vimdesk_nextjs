@@ -1,17 +1,10 @@
 import {API} from '../index';
 
-const update_user = ({first_name,last_name,email}) => {
-
-    const endpoint = "/me/update";
+const users_from_workspace = ({workspace_id}) => {
     
-    const data = 
-    {
-        first_name:     first_name,
-        last_name:      last_name,
-        email:          email
-    };
+    const endpoint = `/workspace/${workspace_id}/users`;
 
-    API.post(endpoint,data)
+    API.get(endpoint)
     .then(responseCallback)
     .catch(errorHandlingCallback);
 }
@@ -26,4 +19,4 @@ const errorHandlingCallback = (error) => {
     //handle error response here
 }
 
-export default update_user;
+export default users_from_workspace;

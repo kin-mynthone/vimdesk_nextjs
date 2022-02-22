@@ -1,14 +1,16 @@
 import {API} from '../index';
 
-const update_user = ({first_name,last_name,email}) => {
+const create_workspace = ({first_name,last_name,email,password,workspace_name}) => {
 
-    const endpoint = "/me/update";
+    const endpoint = "/create-workspace";
     
     const data = 
     {
-        first_name:     first_name,
-        last_name:      last_name,
-        email:          email
+        first_name:         first_name,
+        last_name:          last_name,
+        email:              email,
+        password:           password,
+        workspace_name:     workspace_name,
     };
 
     API.post(endpoint,data)
@@ -26,4 +28,4 @@ const errorHandlingCallback = (error) => {
     //handle error response here
 }
 
-export default update_user;
+export default create_workspace;
