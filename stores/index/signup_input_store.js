@@ -12,6 +12,7 @@ const signUpInputStore = create((set) => ({
   password_notice: "Your password is too weak!",
   password_notice_color: "vimdesk_red",
   password_level: 0,
+  show_password: false,
 
   password_condition1: false,
   password_condition2: false,
@@ -98,6 +99,8 @@ const signUpInputStore = create((set) => ({
       }
       state.set_password_notice();
     }),
+
+  set_show_password: (value) => set((state) => ({ show_password: value })),
 
   set_password_notice: () =>
     set((state) => {

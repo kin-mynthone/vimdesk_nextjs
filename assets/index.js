@@ -11,6 +11,8 @@ export { default as Calendar } from "./icons/calendar.svg";
 export { default as Todo } from "./icons/todo.svg";
 export { default as Notification } from "./icons/notification.svg";
 export { default as Workspace } from "./icons/workspace.svg";
+export { default as HidePassword } from "./icons/hide-password.svg";
+export { default as ShowPassword } from "./icons/show-password.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";
