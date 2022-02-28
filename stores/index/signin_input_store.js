@@ -6,6 +6,8 @@ import { login } from "../../constants/api/user";
 const signInInputStore = create((set) => ({
   workspace_input: "",
   password_input: "",
+  show_password: false,
+
   is_credential_valid: false,
 
   set_workspace_input: (value) =>
@@ -13,6 +15,8 @@ const signInInputStore = create((set) => ({
 
   set_password_input: (value) =>
     set((state) => ({ password_input: value.target.value })),
+
+  set_show_password: (value) => set((state) => ({ show_password: value })),
 
   set_is_credential_valid: (value) =>
     set((state) => ({ is_credential_valid: value })),

@@ -17,8 +17,16 @@ import {
   Text,
   VStack,
   Icon,
+  InputRightElement,
+  InputGroup,
 } from "@chakra-ui/react";
-import { VimDeskLogo, IndexBanner } from "../assets/";
+import {
+  VimDeskLogo,
+  IndexBanner,
+  ShowPassword,
+  HidePassword,
+} from "../assets/";
+import { MotionButton } from "../constants/components/motion";
 
 export default function Home() {
   const { height, width } = useWindowSize();
@@ -39,6 +47,12 @@ export default function Home() {
   const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
+
+  const setShowPasswordSignIn = signInInputStore(
+    (state) => state.set_show_password
+  );
+
+  const showPasswordSignIn = signInInputStore((state) => state.show_password);
 
   //---------------------------------------------------
 
@@ -88,6 +102,11 @@ export default function Home() {
     (state) => state.password_condition4
   );
 
+  const setShowPasswordSignUp = signUpInputStore(
+    (state) => state.set_show_password
+  );
+
+  const showPasswordSignUp = signUpInputStore((state) => state.show_password);
   //---------------------------------------------------
 
   useEffect(() => {
@@ -109,13 +128,43 @@ export default function Home() {
       <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
         Password
       </Text>
-      <Input
-        fontSize={"13px"}
-        variant={"flushed"}
-        type={"password"}
-        placeholder="password"
-        onChange={setSignInPasswordInput}
-      />
+      <HStack alignItems={"center"} width={"100%"}>
+        <InputGroup>
+          <Input
+            fontSize={"13px"}
+            variant={"flushed"}
+            type={showPasswordSignIn ? "text" : "password"}
+            placeholder="password"
+            onChange={setSignInPasswordInput}
+          />
+          <InputRightElement>
+            <MotionButton
+              backgroundColor={"transparent"}
+              _focus={{ border: "none" }}
+              size="xxs"
+              _focusWithin={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+              flexDirection={"row"}
+              whileTap={{
+                scale: 0.8,
+              }}
+              whileHover={{
+                scale: 1.1,
+              }}
+              onClick={() => {
+                setShowPasswordSignIn(!showPasswordSignIn);
+              }} //update this
+            >
+              <Image
+                alt="ctag"
+                src={showPasswordSignIn ? ShowPassword : HidePassword}
+                height={20}
+                width={20}
+              />
+            </MotionButton>
+          </InputRightElement>
+        </InputGroup>
+      </HStack>
     </VStack>
   );
 
@@ -199,13 +248,45 @@ export default function Home() {
         <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
           Password
         </Text>
-        <Input
-          variant={"flushed"}
-          type={"password"}
-          placeholder="Password"
-          fontSize={"13px"}
-          onChange={setSignUpPasswordInput}
-        />
+
+        <HStack alignItems={"center"} width={"100%"}>
+          <InputGroup>
+            <Input
+              fontSize={"13px"}
+              variant={"flushed"}
+              type={showPasswordSignUp ? "text" : "password"}
+              placeholder="password"
+              onChange={setSignUpPasswordInput}
+            />
+            <InputRightElement>
+              <MotionButton
+                backgroundColor={"transparent"}
+                _focus={{ border: "none" }}
+                size="xxs"
+                _focusWithin={{ backgroundColor: "transparent" }}
+                _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+                flexDirection={"row"}
+                whileTap={{
+                  scale: 0.8,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                onClick={() => {
+                  setShowPasswordSignUp(!showPasswordSignUp);
+                }} //update this
+              >
+                <Image
+                  alt="ctag"
+                  src={showPasswordSignUp ? ShowPassword : HidePassword}
+                  height={20}
+                  width={20}
+                />
+              </MotionButton>
+            </InputRightElement>
+          </InputGroup>
+        </HStack>
+
         <Text
           color={signUpPasswordNoticeColor}
           fontSize={"13px"}
