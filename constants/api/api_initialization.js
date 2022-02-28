@@ -6,6 +6,7 @@ const API_INIT =  axios.create({
     {
         Accept: "application/json",
         Authorization: "Bearer Token",
+        "Content-Type":"application/json",
         Token: typeof window !== 'undefined'?
                     localStorage.getItem("session_token") === null ?
                         ""

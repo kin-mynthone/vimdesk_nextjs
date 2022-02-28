@@ -1,0 +1,5 @@
+export {default as createRelation} from './create_relation'
+export {default as updateRelation} from './update_relation'
+export {default as getRelation} from './get_relation'
+export {default as listRelations} from './list_relations'
+export {default as deleteRelation} from './delete_relation'
