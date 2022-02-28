@@ -1,10 +1,10 @@
 import {API} from '../index';
 
-const list_relations = ({workspace_id}) => {
+const delete_estimate = ({workspace_id,estimate_id}) => {
     
-    const endpoint = `/workspace/${workspace_id}/relations`;
+    const endpoint = `/workspace/${workspace_id}/estimates/${estimate_id}`;
 
-    API.get(endpoint)
+    API.delete(endpoint)
     .then(responseCallback)
     .catch(errorHandlingCallback);
 }
@@ -19,4 +19,4 @@ const errorHandlingCallback = (error) => {
     //handle error response here
 }
 
-export default list_relations;
+export default delete_estimate;

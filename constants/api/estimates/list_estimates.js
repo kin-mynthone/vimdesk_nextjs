@@ -1,8 +1,8 @@
 import {API} from '../index';
 
-const list_relations = ({workspace_id}) => {
+const list_estimates = ({workspace_id}) => {
     
-    const endpoint = `/workspace/${workspace_id}/relations`;
+    const endpoint = `/workspace/${workspace_id}/estimates`;
 
     API.get(endpoint)
     .then(responseCallback)
@@ -19,4 +19,4 @@ const errorHandlingCallback = (error) => {
     //handle error response here
 }
 
-export default list_relations;
+export default list_estimates;

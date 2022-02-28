@@ -1,10 +1,23 @@
 import {API} from '../index';
 
-const list_relations = ({workspace_id}) => {
-    
-    const endpoint = `/workspace/${workspace_id}/relations`;
+const accept_estimate = ({
+    workspace_id,
+    estimate_id,
+    status,
+    items,
+    accepted_items
+}) => {
 
-    API.get(endpoint)
+    const endpoint = `/workspace/${workspace_id}/estimates/${estimate_id}/accept`;
+    
+    const data = 
+    {
+        status:             status,
+        items:              items,
+        accepted_items:     accepted_items
+    };
+
+    API.post(endpoint,data)
     .then(responseCallback)
     .catch(errorHandlingCallback);
 }
@@ -19,4 +32,4 @@ const errorHandlingCallback = (error) => {
     //handle error response here
 }
 
-export default list_relations;
+export default accept_estimate;
