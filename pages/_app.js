@@ -15,6 +15,7 @@ import { THEME_DATA, pageTitles } from "../constants/";
 import "@fontsource/poppins";
 import Image from "next/image";
 import { useWindowSize } from "../custom_hooks";
+import NextNProgress from "nextjs-progressbar";
 import { signInInputStore, navigationBarStore } from "../stores/index";
 import {
   ArrowRight,
@@ -882,6 +883,7 @@ function MyApp({ Component, pageProps }) {
         <Flex flexDirection={"column"}>
           {IS_CREDENTIAL_VALID && <Header />}
           <Flex marginTop={IS_CREDENTIAL_VALID && "20px"}>
+            <NextNProgress height={5} color="#8947DD" />
             <Component {...pageProps} />
           </Flex>
         </Flex>

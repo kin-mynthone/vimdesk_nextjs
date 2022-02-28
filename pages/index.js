@@ -1,11 +1,10 @@
-import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useWindowSize } from "../custom_hooks/";
-import { signInInputStore } from "../stores/index";
+import { signInInputStore, signUpInputStore } from "../stores/index";
 
+import { MySpinner } from "../constants/components/spinner";
 import {
   Box,
   Button,
@@ -25,19 +24,71 @@ export default function Home() {
   const { height, width } = useWindowSize();
   const [isSigningIn, setIsSigningIn] = useState(true);
 
-  const setWorkspaceInput = signInInputStore(
+  const setSignInWorkspaceInput = signInInputStore(
     (state) => state.set_workspace_input
   );
-  const setPasswordInput = signInInputStore(
+
+  const setSignInPasswordInput = signInInputStore(
     (state) => state.set_password_input
   );
 
   const validateCredentialInput = signInInputStore(
     (state) => state.validate_credential_input
   );
+
   const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
+
+  //---------------------------------------------------
+
+  const setSignUpFirstnameInput = signUpInputStore(
+    (state) => state.set_firstname_input
+  );
+
+  const setSignUpLastnameInput = signUpInputStore(
+    (state) => state.set_lastname_input
+  );
+
+  const setSignUpEmailInput = signUpInputStore(
+    (state) => state.set_email_input
+  );
+
+  const setSignUpWorkspaceInput = signUpInputStore(
+    (state) => state.set_workspace_input
+  );
+
+  const setSignUpPasswordInput = signUpInputStore(
+    (state) => state.set_password_input
+  );
+
+  const CreateWorkspace = signUpInputStore((state) => state.create_workspace);
+
+  const signUpPasswordNoticeColor = signUpInputStore(
+    (state) => state.password_notice_color
+  );
+
+  const signUpPasswordNotice = signUpInputStore(
+    (state) => state.password_notice
+  );
+
+  const signUpPasswordCondition1 = signUpInputStore(
+    (state) => state.password_condition1
+  );
+
+  const signUpPasswordCondition2 = signUpInputStore(
+    (state) => state.password_condition2
+  );
+
+  const signUpPasswordCondition3 = signUpInputStore(
+    (state) => state.password_condition3
+  );
+
+  const signUpPasswordCondition4 = signUpInputStore(
+    (state) => state.password_condition4
+  );
+
+  //---------------------------------------------------
 
   useEffect(() => {
     setIsCredentialValid(false);
@@ -52,7 +103,7 @@ export default function Home() {
         fontSize={"13px"}
         variant={"flushed"}
         placeholder="workspace-name"
-        onChange={setWorkspaceInput}
+        onChange={setSignInWorkspaceInput}
       />
 
       <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
@@ -63,7 +114,7 @@ export default function Home() {
         variant={"flushed"}
         type={"password"}
         placeholder="password"
-        onChange={setPasswordInput}
+        onChange={setSignInPasswordInput}
       />
     </VStack>
   );
@@ -102,6 +153,7 @@ export default function Home() {
             variant={"flushed"}
             placeholder="Firstname"
             fontSize={"13px"}
+            onChange={setSignUpFirstnameInput}
           />
         </VStack>
         <Spacer />
@@ -109,7 +161,12 @@ export default function Home() {
           <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
             Lastname
           </Text>
-          <Input variant={"flushed"} placeholder="Lastname" fontSize={"13px"} />
+          <Input
+            variant={"flushed"}
+            placeholder="Lastname"
+            fontSize={"13px"}
+            onChange={setSignUpLastnameInput}
+          />
         </VStack>
       </HStack>
       <HStack w={"100%"}>
@@ -118,7 +175,12 @@ export default function Home() {
             Email
           </Text>
 
-          <Input variant={"flushed"} placeholder="Email" fontSize={"13px"} />
+          <Input
+            variant={"flushed"}
+            placeholder="Email"
+            fontSize={"13px"}
+            onChange={setSignUpEmailInput}
+          />
         </VStack>
         <Spacer />
         <VStack alignItems={"flex-start"} width={"100%"}>
@@ -129,6 +191,7 @@ export default function Home() {
             variant={"flushed"}
             placeholder="workspace-name"
             fontSize={"13px"}
+            onChange={setSignUpWorkspaceInput}
           />
         </VStack>
       </HStack>
@@ -141,34 +204,51 @@ export default function Home() {
           type={"password"}
           placeholder="Password"
           fontSize={"13px"}
+          onChange={setSignUpPasswordInput}
         />
-        <Text color={"vimdesk_yellow"} fontSize={"13px"} fontWeight={900}>
-          Seems good, we suggest to make it stronger!
+        <Text
+          color={signUpPasswordNoticeColor}
+          fontSize={"13px"}
+          fontWeight={"extrabold"}
+        >
+          {signUpPasswordNotice}
         </Text>
       </VStack>
 
       <VStack alignItems={"flex-start"}>
         <HStack>
-          <CircleIconGreen />
-          <Text color={"vimdesk_green"} fontSize={"xs"}>
+          {signUpPasswordCondition1 ? <CircleIconGreen /> : <CircleIconGray />}
+          <Text
+            color={signUpPasswordCondition1 ? "vimdesk_green" : "vimdesk_gray"}
+            fontSize={"xs"}
+          >
             Contains at least one uppercase
           </Text>
         </HStack>
         <HStack>
-          <CircleIconGreen />
-          <Text color={"vimdesk_green"} fontSize={"xs"}>
+          {signUpPasswordCondition2 ? <CircleIconGreen /> : <CircleIconGray />}
+          <Text
+            color={signUpPasswordCondition2 ? "vimdesk_green" : "vimdesk_gray"}
+            fontSize={"xs"}
+          >
             Contains at least one number
           </Text>
         </HStack>
         <HStack>
-          <CircleIconGreen />
-          <Text color={"vimdesk_green"} fontSize={"xs"}>
+          {signUpPasswordCondition3 ? <CircleIconGreen /> : <CircleIconGray />}
+          <Text
+            color={signUpPasswordCondition3 ? "vimdesk_green" : "vimdesk_gray"}
+            fontSize={"xs"}
+          >
             Character must be equal or more than 8 character
           </Text>
         </HStack>
         <HStack>
-          <CircleIconGray />
-          <Text color={"vimdesk_gray"} fontSize={"xs"}>
+          {signUpPasswordCondition4 ? <CircleIconGreen /> : <CircleIconGray />}
+          <Text
+            color={signUpPasswordCondition4 ? "vimdesk_green" : "vimdesk_gray"}
+            fontSize={"xs"}
+          >
             Contains at least one special character
           </Text>
         </HStack>
@@ -205,6 +285,7 @@ export default function Home() {
 
   return (
     <Box minH={height} minW={width} bg={"vimdesk_bg"}>
+      <MySpinner />
       <Flex
         flexDirection={width < 1024 ? "column" : "row"}
         paddingLeft={"14"}
@@ -262,7 +343,11 @@ export default function Home() {
                 variant={"solid"}
                 width={"100%"}
                 paddingY={"7"}
-                onClick={isSigningIn && validateCredentialInput}
+                onClick={() => {
+                  isSigningIn == true
+                    ? validateCredentialInput()
+                    : CreateWorkspace();
+                }}
               >
                 {"Let's Go!"}
               </Button>
