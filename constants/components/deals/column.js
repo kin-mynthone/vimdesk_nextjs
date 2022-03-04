@@ -1,11 +1,20 @@
 import React from "react";
-import MyTask from "./task";
+import { MyTask } from "./";
 import { Flex, Text, Container, Box, Spacer } from "@chakra-ui/react";
 import { Droppable } from "react-beautiful-dnd";
 import { HKebab, PlusSign } from "../../../assets";
 import Image from "next/image";
-import { MotionButton } from "../../../constants/components/motion";
+import { MotionButton } from "../motion";
+import { addDealModalStore } from "../../../stores/deals";
+
 const Column = ({ column, tasks }) => {
+  const addDealsModalActiveStatus = addDealModalStore(
+    (state) => state.active_status
+  );
+  const setAddDealsModalActiveStatus = addDealModalStore(
+    (state) => state.set_active_status
+  );
+
   return (
     <Flex margin={"8px"} flexDirection={"column"}>
       <Flex
@@ -67,7 +76,9 @@ const Column = ({ column, tasks }) => {
           whileHover={{
             scale: 1.1,
           }}
-          onClick={null} //update this
+          onClick={() => {
+            setAddDealsModalActiveStatus(!addDealsModalActiveStatus);
+          }} //update this
         >
           <Image src={PlusSign} alt="vimdesk_h_kebab" />
         </MotionButton>

@@ -14,6 +14,8 @@ import {
 import { THEME_DATA, pageTitles } from "../constants/";
 import "@fontsource/poppins";
 import Image from "next/image";
+import Router from "next/router";
+
 import { useWindowSize } from "../custom_hooks";
 import NextNProgress from "nextjs-progressbar";
 import { signInInputStore, navigationBarStore } from "../stores/index";
@@ -51,6 +53,7 @@ import {
 } from "../assets/";
 
 import { MotionButton } from "../constants/components/motion";
+import { FloatingActionButton } from "../constants/components/floating_action_button";
 
 const VerticalLine = () => {
   return (
@@ -111,6 +114,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(0);
+                Router.push({
+                  pathname: "/dashboard",
+                });
               }}
             >
               <Flex
@@ -129,7 +135,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={
                     active_tab_index != 0 ? InactiveDashboard : ActiveDashboard
                   }
@@ -161,6 +167,30 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(1);
+                switch (active_sales_sub_tab_index) {
+                  case 0:
+                    Router.push({
+                      pathname: "/sales/deals",
+                    });
+                    break;
+                  case 1:
+                    Router.push({
+                      pathname: "/sales/estimates",
+                    });
+                    break;
+                  case 2:
+                    Router.push({
+                      pathname: "/sales/invoices",
+                    });
+                    break;
+                  case 3:
+                    Router.push({
+                      pathname: "/sales/periodics",
+                    });
+                    break;
+                  default:
+                  // code block
+                }
               }}
             >
               <Flex
@@ -179,7 +209,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={active_tab_index != 1 ? InactiveSales : ActiveSales}
                   height={20}
                   width={20}
@@ -230,10 +260,13 @@ const NavigationBar = () => {
                   }}
                   onClick={() => {
                     setActiveSalesSubIndex(0);
+                    Router.push({
+                      pathname: "/sales/deals",
+                    });
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk"
                     src={
                       active_sales_sub_tab_index != 0
                         ? InactiveDeals
@@ -273,10 +306,13 @@ const NavigationBar = () => {
                   }}
                   onClick={() => {
                     setActiveSalesSubIndex(1);
+                    Router.push({
+                      pathname: "/sales/estimates",
+                    });
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk"
                     src={
                       active_sales_sub_tab_index != 1
                         ? InactiveEstimates
@@ -316,10 +352,14 @@ const NavigationBar = () => {
                   }}
                   onClick={() => {
                     setActiveSalesSubIndex(2);
+
+                    Router.push({
+                      pathname: "/sales/invoices",
+                    });
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk"
                     src={
                       active_sales_sub_tab_index != 2
                         ? InactiveInvoice
@@ -359,10 +399,13 @@ const NavigationBar = () => {
                   }}
                   onClick={() => {
                     setActiveSalesSubIndex(3);
+                    Router.push({
+                      pathname: "/sales/periodics",
+                    });
                   }}
                 >
                   <Image
-                    alt="ctag"
+                    alt="vimdesk"
                     src={
                       active_sales_sub_tab_index != 3
                         ? InactivePeriodic
@@ -397,6 +440,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(2);
+                Router.push({
+                  pathname: "/relations",
+                });
               }}
             >
               <Flex
@@ -414,7 +460,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={
                     active_tab_index != 2 ? InactiveRelations : ActiveRelations
                   }
@@ -446,6 +492,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(3);
+                Router.push({
+                  pathname: "/products",
+                });
               }}
             >
               <Flex
@@ -464,7 +513,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={
                     active_tab_index != 3 ? InactiveProducts : ActiveProducts
                   }
@@ -496,6 +545,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(4);
+                Router.push({
+                  pathname: "/documents",
+                });
               }}
             >
               <Flex
@@ -514,7 +566,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={
                     active_tab_index != 4 ? InactiveDocuments : ActiveDocuments
                   }
@@ -546,6 +598,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(5);
+                Router.push({
+                  pathname: "/project_management",
+                });
               }}
             >
               <Flex
@@ -564,7 +619,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={
                     active_tab_index != 5
                       ? InactiveProjectManagement
@@ -598,6 +653,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(6);
+                Router.push({
+                  pathname: "/files",
+                });
               }}
             >
               <Flex
@@ -616,7 +674,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={active_tab_index != 6 ? InactiveFiles : ActiveFiles}
                   height={20}
                   width={20}
@@ -646,6 +704,9 @@ const NavigationBar = () => {
               }}
               onClick={() => {
                 setActiveIndex(7);
+                Router.push({
+                  pathname: "/tickets",
+                });
               }}
             >
               <Flex
@@ -664,7 +725,7 @@ const NavigationBar = () => {
                 }}
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={active_tab_index != 7 ? InactiveTickets : ActiveTickets}
                   height={20}
                   width={20}
@@ -712,7 +773,7 @@ const NavigationBar = () => {
           borderRadius={"full"}
         >
           <Image
-            alt="ctag"
+            alt="vimdesk"
             src={
               "https://firebasestorage.googleapis.com/v0/b/itsy-39bff.appspot.com/o/RDJ-Tony-Stark.jpeg?alt=media&token=facd6754-838b-4e2c-ae59-e898f8cdde01"
             }
@@ -737,6 +798,9 @@ const NavigationBar = () => {
 };
 
 const HeaderMenu = () => {
+  const setActiveIndex = navigationBarStore(
+    (state) => state.set_active_tab_index
+  );
   return (
     <Flex flexDirection={"row"} justifyContent={"space-around"}>
       <MotionButton
@@ -751,7 +815,7 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={null} //update this
+        onClick={() => {}}
       >
         <Image alt="profile" src={Notification} height={18} width={18} />
       </MotionButton>
@@ -767,7 +831,7 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={null} //update this
+        onClick={() => {}}
       >
         <Image alt="profile" src={Todo} height={18} width={18} />
       </MotionButton>
@@ -783,7 +847,7 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={null} //update this
+        onClick={() => {}}
       >
         <Image alt="profile" src={Calendar} height={18} width={18} />
       </MotionButton>
@@ -800,7 +864,7 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={null} //update this
+        onClick={() => {}}
       >
         <Image alt="profile" src={Workspace} height={18} width={18} />
       </MotionButton>
@@ -849,12 +913,14 @@ const HeaderTitle = () => {
 };
 const Header = () => {
   const { height } = useWindowSize();
+  const { width } = useWindowSize();
   return (
     <Flex
       flexDirection={"row"}
       marginTop={"20px"}
+      width={width * 0.82}
       alignItems={"center"}
-      paddingLeft={"30px"}
+      paddingX={"20px"}
       justifyContent={"space-between"}
       height={height * 0.07}
     >
@@ -883,10 +949,11 @@ function MyApp({ Component, pageProps }) {
         <Flex flexDirection={"column"}>
           {IS_CREDENTIAL_VALID && <Header />}
           <Flex marginTop={IS_CREDENTIAL_VALID && "20px"}>
-            <NextNProgress height={5} color="#8947DD" />
             <Component {...pageProps} />
+            {/* <FloatingActionButton /> */}
           </Flex>
         </Flex>
+        <NextNProgress height={5} color="#8947DD" />
       </Flex>
     </ChakraProvider>
   );
