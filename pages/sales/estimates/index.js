@@ -18,6 +18,8 @@ import {
   color,
 } from "@chakra-ui/react";
 
+import { Table } from "../../../constants/components/tables";
+
 import {
   signInInputStore,
   navigationBarStore,
