@@ -4,6 +4,7 @@ export { default as ArrowDown } from "./icons/arrow-down.svg";
 export { default as ArrowRight } from "./icons/arrow-right.svg";
 export { default as HKebab } from "./icons/h-kebab.svg";
 export { default as PlusSign } from "./icons/plus-sign.svg";
+export { default as PlusSignWhite } from "./icons/plus-sign-white.svg";
 export { default as DueDate } from "./icons/due-date.svg";
 export { default as CreatedAt } from "./icons/created-at.svg";
 export { default as User } from "./icons/user.svg";
@@ -13,6 +14,9 @@ export { default as Notification } from "./icons/notification.svg";
 export { default as Workspace } from "./icons/workspace.svg";
 export { default as HidePassword } from "./icons/hide-password.svg";
 export { default as ShowPassword } from "./icons/show-password.svg";
+export { default as Minimize } from "./icons/minimize.svg";
+export { default as Close } from "./icons/close.svg";
+export { default as Check } from "./icons/check.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

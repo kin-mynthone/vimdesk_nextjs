@@ -1,1 +1,1 @@
-export { default as MySpinner } from "./spinner";
+export { default as SpinnerModal } from "./spinnerModal";

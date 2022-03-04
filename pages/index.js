@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useWindowSize } from "../custom_hooks/";
 import { signInInputStore, signUpInputStore } from "../stores/index";
 
-import { MySpinner } from "../constants/components/spinner";
+import { SpinnerModal } from "../constants/components/spinner";
 import {
   Box,
   Button,
@@ -156,7 +156,7 @@ export default function Home() {
               }} //update this
             >
               <Image
-                alt="ctag"
+                alt="vimdesk"
                 src={showPasswordSignIn ? ShowPassword : HidePassword}
                 height={20}
                 width={20}
@@ -277,7 +277,7 @@ export default function Home() {
                 }} //update this
               >
                 <Image
-                  alt="ctag"
+                  alt="vimdesk"
                   src={showPasswordSignUp ? ShowPassword : HidePassword}
                   height={20}
                   width={20}
@@ -366,7 +366,7 @@ export default function Home() {
 
   return (
     <Box minH={height} minW={width} bg={"vimdesk_bg"}>
-      <MySpinner />
+      <SpinnerModal />
       <Flex
         flexDirection={width < 1024 ? "column" : "row"}
         paddingLeft={"14"}

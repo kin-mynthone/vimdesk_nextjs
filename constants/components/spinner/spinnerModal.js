@@ -4,7 +4,7 @@ import { spinnerStore } from "../../../stores/spinner";
 import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 import PulseLoader from "react-spinners/PulseLoader";
 
-const MySpinner = () => {
+const SpinnerModal = () => {
   const spinnerActiveStatus = spinnerStore((state) => state.active_status);
 
   return (
@@ -28,4 +28,4 @@ const MySpinner = () => {
     </Modal>
   );
 };
-export default MySpinner;
+export default SpinnerModal;
