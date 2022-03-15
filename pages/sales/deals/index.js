@@ -20,12 +20,14 @@ import {
   color,
 } from "@chakra-ui/react";
 
-import { SearchIcon } from "@chakra-ui/icons";
-
 import { signInInputStore, navigationBarStore } from "../../../stores/index";
 import { AddDealModal } from "../../../constants/components/deals";
 import initialData from "../../../constants/data/initial-data";
 import Column from "../../../constants/components/deals/column";
+import {
+  Search,
+  Filter,
+} from "../../../constants/components/search_and_filter";
 
 export default function Home() {
   const { height, width } = useWindowSize();
@@ -114,42 +116,6 @@ export default function Home() {
     setState(newState);
   };
 
-  const [SearchTerm, setSearchTerm] = useState("");
-
-  const Search = () => {
-    return (
-      <Flex
-        padding={"15px"}
-        margin={"10px"}
-        marginTop={"10px"}
-        width={"250px"}
-        height={"40px"}
-        borderRadius={13}
-        marginBottom={"20px"}
-        flexDirection={"row"}
-        alignItems={"center"}
-        backgroundColor={"white"}
-      >
-        <InputGroup
-          bgColor={"white"}
-          borderRadius={13}
-          borderColor={"transparent"}
-        >
-          <InputLeftElement>
-            <SearchIcon />
-          </InputLeftElement>
-          <Input
-            type={"text"}
-            placeholder="Search Here..."
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-        </InputGroup>
-      </Flex>
-    );
-  };
-
   const Kanban = () => {
     return (
       <Flex height={height * 0.85}>
@@ -165,6 +131,16 @@ export default function Home() {
     );
   };
   resetServerContext();
+
+  const SearchFilter = () => {
+    return (
+      <Flex flexDirection={"row"}>
+        <Search />
+        <Filter />
+      </Flex>
+    );
+  };
+
   return (
     <Flex
       alignItems={"stretch"}
@@ -176,7 +152,7 @@ export default function Home() {
         overflow: "auto",
       }}
     >
-      <Search />
+      <SearchFilter />
       <Kanban />
       <AddDealModal />
     </Flex>

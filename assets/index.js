@@ -17,6 +17,8 @@ export { default as ShowPassword } from "./icons/show-password.svg";
 export { default as Minimize } from "./icons/minimize.svg";
 export { default as Close } from "./icons/close.svg";
 export { default as Check } from "./icons/check.svg";
+export { default as Filter } from "./icons/filter.svg";
+export { default as SortBy } from "./icons/sort-by.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";
