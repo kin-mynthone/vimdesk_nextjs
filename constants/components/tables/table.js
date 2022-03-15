@@ -12,7 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const MyTable = ({ width }) => {
+const MyTable = ({ width, jsonData }) => {
   return (
     <Flex
       borderRadius={13}

@@ -28,7 +28,7 @@ const responseCallback = (response) => {
 
 const errorHandlingCallback = (error) => {
   spinnerStore.setState({ active_status: false });
-
+  console.log(error);
   const toast = createStandaloneToast();
   toast({
     title: "Invalid Code",
