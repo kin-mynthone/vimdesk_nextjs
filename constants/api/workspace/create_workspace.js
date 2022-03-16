@@ -15,14 +15,16 @@ const create_workspace = ({
   const endpoint = "/create-workspace";
 
   const data = {
-    first_name: first_name,
-    last_name: last_name,
-    email: email,
-    password: password,
-    workspace_name: workspace_name,
+    first_name:       first_name,
+    last_name:        last_name,
+    email:            email,
+    password:         password,
+    workspace_name:   workspace_name,
   };
 
-  API.post(endpoint, data).then(responseCallback).catch(errorHandlingCallback);
+  API.post(endpoint, data)
+  .then(responseCallback)
+  .catch(errorHandlingCallback);
 };
 
 const responseCallback = (response) => {

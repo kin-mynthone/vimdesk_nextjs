@@ -8,8 +8,8 @@ const login = ({ email, password }) => {
   const endpoint = "/login";
 
   const data = {
-    email: email,
-    password: password,
+    email:      email,
+    password:   password,
   };
 
   API.post(endpoint, data).then(responseCallback).catch(errorHandlingCallback);
