@@ -17,6 +17,8 @@ const MyTable = ({ width, jsonData }) => {
     <Flex
       borderRadius={13}
       width={width}
+      marginLeft={"10px"}
+      marginBottom={"10px"}
       backgroundColor={"vimdesk_bg"}
       padding={5}
       style={{
@@ -37,7 +39,7 @@ const MyTable = ({ width, jsonData }) => {
         </Thead>
         <Tbody>
           <Tr
-            _hover={{ backgroundColor: "#E8EAEB", cursor: "pointer" }}
+            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
             onClick={() => {
               alert("adasd");
             }}
@@ -51,7 +53,7 @@ const MyTable = ({ width, jsonData }) => {
             <Td>25.4</Td>
           </Tr>
           <Tr
-            _hover={{ backgroundColor: "#E8EAEB", cursor: "pointer" }}
+            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
             onClick={() => {
               alert("adasd");
             }}
@@ -65,7 +67,7 @@ const MyTable = ({ width, jsonData }) => {
             <Td>25.4</Td>
           </Tr>
           <Tr
-            _hover={{ backgroundColor: "#E8EAEB", cursor: "pointer" }}
+            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
             onClick={() => {
               alert("adasd");
             }}

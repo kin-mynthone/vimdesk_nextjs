@@ -19,7 +19,10 @@ import {
 } from "@chakra-ui/react";
 
 import { MyTable } from "../../../constants/components/tables";
-
+import {
+  Search,
+  Filter,
+} from "../../../constants/components/search_and_filter";
 import {
   signInInputStore,
   navigationBarStore,
@@ -46,17 +49,29 @@ export default function Home() {
     setActiveSalesSubIndex(1);
   });
 
+  const SearchFilter = () => {
+    return (
+      <Flex flexDirection={"row"}>
+        <Search />
+        <Filter />
+      </Flex>
+    );
+  };
+
   return (
     <Flex
       alignItems={"stretch"}
       flexDirection={"column"}
       padding={"20px"}
+      width={width}
       bgColor={"vimdesk_main_bg"}
       maxWidth={width * 0.81}
       style={{
         overflow: "auto",
       }}
     >
+      {" "}
+      <SearchFilter />
       <MyTable width={width * 0.78} />
     </Flex>
   );

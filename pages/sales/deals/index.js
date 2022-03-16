@@ -118,7 +118,7 @@ export default function Home() {
 
   const Kanban = () => {
     return (
-      <Flex height={height * 0.85}>
+      <Flex height={height * 0.77}>
         <DragDropContext onDragEnd={onDragEnd}>
           {state.columnOrder.map((columnId) => {
             const column = state.columns[columnId];
@@ -143,9 +143,10 @@ export default function Home() {
 
   return (
     <Flex
+      width={width}
       alignItems={"stretch"}
       flexDirection={"column"}
-      paddingX={"20px"}
+      padding={"20px"}
       bgColor={"vimdesk_main_bg"}
       maxWidth={width * 0.81}
       style={{
