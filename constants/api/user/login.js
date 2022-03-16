@@ -2,7 +2,7 @@ import { createStandaloneToast } from "@chakra-ui/react";
 import Router from "next/router";
 import { API } from "../index";
 import { spinnerStore } from "../../../stores/spinner";
-
+import { me } from "./";
 const login = ({ email, password }) => {
   spinnerStore.setState({ active_status: true });
   const endpoint = "/login";
@@ -17,13 +17,17 @@ const login = ({ email, password }) => {
 
 const responseCallback = (response) => {
   //TODO: once session_token is received, uncomment the code below and replace "token-value-here"
-  //with the real session token from the reponse
-  //localStorage.setItem("session_token",token-value-here);
+  const data = response.data;
+
+  localStorage.setItem("session_token", data.access_token);
   spinnerStore.setState({ active_status: false });
+
+  alert(localStorage.getItem("session_token"));
 
   Router.push({
     pathname: "/sales/deals",
   });
+  me();
 };
 
 const errorHandlingCallback = (error) => {
