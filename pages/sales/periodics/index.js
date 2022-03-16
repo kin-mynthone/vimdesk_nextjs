@@ -17,7 +17,7 @@ import {
   handle,
   color,
 } from "@chakra-ui/react";
-
+import { MyTable } from "../../../constants/components/tables";
 import {
   signInInputStore,
   navigationBarStore,
@@ -48,14 +48,15 @@ export default function Home() {
     <Flex
       alignItems={"stretch"}
       flexDirection={"column"}
-      paddingX={"20px"}
+      padding={"20px"}
+      width={width}
       bgColor={"vimdesk_main_bg"}
       maxWidth={width * 0.81}
       style={{
         overflow: "auto",
       }}
     >
-      <Text>Periodics</Text>
+      <MyTable width={width * 0.78} />
     </Flex>
   );
 }
