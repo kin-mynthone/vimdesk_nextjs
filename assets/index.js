@@ -19,6 +19,10 @@ export { default as Close } from "./icons/close.svg";
 export { default as Check } from "./icons/check.svg";
 export { default as Filter } from "./icons/filter.svg";
 export { default as SortBy } from "./icons/sort-by.svg";
+export { default as Trash } from "./icons/trash-alt.svg";
+export { default as TextField } from "./icons/text-fields.svg";
+export { default as Discount } from "./icons/percentage.svg";
+export { default as Burger } from "./icons/burger.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

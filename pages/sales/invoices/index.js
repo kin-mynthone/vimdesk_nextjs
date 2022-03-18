@@ -17,13 +17,17 @@ import {
   handle,
   color,
 } from "@chakra-ui/react";
-
+import { PlusSignWhite } from "../../../assets";
+import Image from "next/image";
 import { signInInputStore, navigationBarStore } from "../../../stores/index";
 import { MyTable } from "../../../constants/components/tables";
 import {
   Search,
   Filter,
 } from "../../../constants/components/search_and_filter";
+import { addInvoiceModalStore } from "../../../stores/invoice";
+import { AddInvoiceModal } from "../../../constants/components/invoice";
+
 export default function Home() {
   const { height, width } = useWindowSize();
 
@@ -39,20 +43,50 @@ export default function Home() {
     (state) => state.set_active_sales_sub_tab_index
   );
 
+  const addInvoiceModalActiveStatus = addInvoiceModalStore(
+    (state) => state.active_status
+  );
+  const setAddInvoiceModalActiveStatus = addInvoiceModalStore(
+    (state) => state.set_active_status
+  );
+
   useEffect(() => {
     setIsCredentialValid(true);
     setActiveTabIndex(1);
     setActiveSalesSubIndex(2);
   });
 
-  const SearchFilter = () => {
+  const Options = () => {
     return (
-      <Flex flexDirection={"row"}>
-        <Search />
-        <Filter />
+      <Flex
+        flexDirection={"row"}
+        alignItems={"center"}
+        marginBottom={"20px"}
+        justifyContent={"space-between"}
+      >
+        <Flex>
+          <Search />
+          <Filter />
+        </Flex>
+
+        <Button
+          variant={"solid"}
+          borderRadius={"12px"}
+          height={"40px"}
+          width={"180px"}
+          onClick={() => {
+            setAddInvoiceModalActiveStatus(!addInvoiceModalActiveStatus);
+          }}
+        >
+          <Image src={PlusSignWhite} alt="vimdesk_h_kebab" width={"13px"} />{" "}
+          <Text marginLeft={1} fontSize={"15px"}>
+            New Invoice
+          </Text>
+        </Button>
       </Flex>
     );
   };
+
   return (
     <Flex
       alignItems={"stretch"}
@@ -65,8 +99,9 @@ export default function Home() {
         overflow: "auto",
       }}
     >
-      <SearchFilter />
+      <Options />
       <MyTable width={width * 0.78} />
+      <AddInvoiceModal />
     </Flex>
   );
 }

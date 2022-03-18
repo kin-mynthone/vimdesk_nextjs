@@ -107,16 +107,16 @@ const addDealModal = () => {
   };
 
   const colors = [
-    { name: "Orange", value: "orange" },
-    { name: "Red", value: "red" },
-    { name: "Blue", value: "blue" },
-    { name: "Purple", value: "purple" },
-    { name: "Yellow", value: "yellow" },
+    { name: "Data1", value: "data1" },
+    { name: "Data2", value: "data2" },
+    { name: "Data3", value: "data3" },
+    { name: "Data4", value: "data4" },
+    { name: "Data5", value: "data5" },
   ];
 
   function renderFontOption(props, { name, value }, snapshot, className) {
     return (
-      <Flex padding={2} bgColor={"blue"} position={"absolute"}>
+      <Flex padding={2}>
         <Button {...props} className={className} type="button">
           {name}
         </Button>
@@ -128,8 +128,6 @@ const addDealModal = () => {
     return (
       <SelectSearch
         options={colors}
-        position={"absolute"}
-        zIndex={1000}
         variant="flushed"
         renderOption={renderFontOption}
         search

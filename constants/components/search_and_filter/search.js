@@ -16,7 +16,6 @@ const Search = () => {
       width={"250px"}
       height={"40px"}
       borderRadius={13}
-      marginBottom={"20px"}
       flexDirection={"row"}
       alignItems={"center"}
       backgroundColor={"white"}

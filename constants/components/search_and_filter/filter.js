@@ -19,7 +19,6 @@ const Search = () => {
         marginRight={"10px"}
         width={"80px"}
         height={"40px"}
-        marginBottom={"20px"}
         backgroundColor={"#818181"}
         _focus={{ border: "none" }}
         _focusWithin={{ backgroundColor: "#818181" }}
@@ -45,7 +44,6 @@ const Search = () => {
         marginY={"10px"}
         width={"120px"}
         height={"40px"}
-        marginBottom={"20px"}
         backgroundColor={"#818181"}
         _focus={{ border: "none" }}
         _focusWithin={{ backgroundColor: "#818181" }}

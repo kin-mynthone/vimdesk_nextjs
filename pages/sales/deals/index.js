@@ -19,11 +19,13 @@ import {
   handle,
   color,
 } from "@chakra-ui/react";
-
+import { PlusSignWhite } from "../../../assets";
 import { signInInputStore, navigationBarStore } from "../../../stores/index";
 import { AddDealModal } from "../../../constants/components/deals";
 import initialData from "../../../constants/data/initial-data";
 import Column from "../../../constants/components/deals/column";
+import { addDealModalStore } from "../../../stores/deals";
+
 import {
   Search,
   Filter,
@@ -42,6 +44,13 @@ export default function Home() {
 
   const setActiveSalesSubIndex = navigationBarStore(
     (state) => state.set_active_sales_sub_tab_index
+  );
+
+  const addDealsModalActiveStatus = addDealModalStore(
+    (state) => state.active_status
+  );
+  const setAddDealsModalActiveStatus = addDealModalStore(
+    (state) => state.set_active_status
   );
 
   useEffect(() => {
@@ -132,11 +141,33 @@ export default function Home() {
   };
   resetServerContext();
 
-  const SearchFilter = () => {
+  const Options = () => {
     return (
-      <Flex flexDirection={"row"}>
-        <Search />
-        <Filter />
+      <Flex
+        flexDirection={"row"}
+        alignItems={"center"}
+        marginBottom={"20px"}
+        justifyContent={"space-between"}
+      >
+        <Flex>
+          <Search />
+          <Filter />
+        </Flex>
+
+        <Button
+          variant={"solid"}
+          borderRadius={"12px"}
+          height={"40px"}
+          width={"180px"}
+          onClick={() => {
+            setAddDealsModalActiveStatus(!addDealsModalActiveStatus);
+          }}
+        >
+          <Image src={PlusSignWhite} alt="vimdesk_h_kebab" width={"13px"} />{" "}
+          <Text marginLeft={1} fontSize={"15px"}>
+            New Deals
+          </Text>
+        </Button>
       </Flex>
     );
   };
@@ -153,7 +184,7 @@ export default function Home() {
         overflow: "auto",
       }}
     >
-      <SearchFilter />
+      <Options />
       <Kanban />
       <AddDealModal />
     </Flex>
