@@ -23,6 +23,11 @@ import { MyTable } from "../../../constants/components/tables";
 import { addEstimateModalStore } from "../../../stores/estimates";
 import { AddEstimateModal } from "../../../constants/components/estimates";
 
+import { MyTable } from "../../../constants/components/tables";
+import {
+  Search,
+  Filter,
+} from "../../../constants/components/search_and_filter";
 import {
   Search,
   Filter,
