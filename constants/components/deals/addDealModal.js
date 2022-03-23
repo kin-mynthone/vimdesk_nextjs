@@ -11,15 +11,16 @@ import {
   Spacer,
   Text,
   Stack,
-  Select,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { MotionButton } from "../motion";
-import { dealPriorityData, initialData } from "../../";
-import SelectSearch, { fuzzySearch } from "react-select-search";
+import { dealPriorityData, dealStatusData, initialData } from "../../";
 import { Close, Minimize, Check } from "../../../assets";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
+
+import Select from "react-select";
+
 const addDealModal = () => {
   const addDealsModalActiveStatus = addDealModalStore(
     (state) => state.active_status
@@ -73,13 +74,17 @@ const addDealModal = () => {
 
   const clearData = addDealModalStore((state) => state.clear_date);
 
-  const activeClientSelect = addDealModalStore(
-    (state) => state.active_client_select
-  );
+  function DealProrityList() {
+    const options = [];
+    dealPriorityData.map((value, index) => {
+      options.push({
+        value: value.name,
+        label: value.name,
+      });
+    });
 
-  const setActiveClientSelect = addDealModalStore(
-    (state) => state.set_active_client_select
-  );
+    return options;
+  }
 
   const DealPrioritySelect = () => {
     const handleChange = (event) => {
@@ -96,45 +101,29 @@ const addDealModal = () => {
         value={dealsPriority}
         onChange={handleChange}
         iconColor="vimdesk_gray"
-      >
-        {dealPriorityData.map((value, index) => (
-          <option key={index + 1} value={value.name}>
-            {value.name}
-          </option>
-        ))}
-      </Select>
-    );
-  };
-
-  const colors = [
-    { name: "Data1", value: "data1" },
-    { name: "Data2", value: "data2" },
-    { name: "Data3", value: "data3" },
-    { name: "Data4", value: "data4" },
-    { name: "Data5", value: "data5" },
-  ];
-
-  function renderFontOption(props, { name, value }, snapshot, className) {
-    return (
-      <Flex padding={2}>
-        <Button {...props} className={className} type="button">
-          {name}
-        </Button>
-      </Flex>
-    );
-  }
-
-  const ClientSelect = () => {
-    return (
-      <SelectSearch
-        options={colors}
-        variant="flushed"
-        renderOption={renderFontOption}
-        search
-        filterOptions={fuzzySearch}
+        options={DealProrityList()}
       />
     );
   };
+
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
+  ];
+  const SelectClientLead = () => <Select options={options} />;
+
+  function DealStatusList() {
+    const options = [];
+    dealStatusData.map((value, index) => {
+      options.push({
+        value: value.name,
+        label: value.name,
+      });
+    });
+
+    return options;
+  }
 
   const DealStatusSelect = () => {
     const handleChange = (event) => {
@@ -150,25 +139,32 @@ const addDealModal = () => {
         value={dealsStatus}
         onChange={handleChange}
         iconColor="vimdesk_gray"
-      >
-        {initialData.columnOrder.map((value, index) => (
-          <option key={index + 1} value={initialData.columns[value].title}>
-            {initialData.columns[value].title}
-          </option>
-        ))}
-      </Select>
+        options={DealStatusList()}
+      />
     );
   };
 
   const CloseDateCalendar = () => {
     return (
-      <Datetime
-        timeFormat={false}
-        open={activeCalendar}
-        onChange={(value) => {
-          setCloseDate(value);
+      <Flex
+        position={"absolute"}
+        zIndex={1000}
+        marginTop={"60px"}
+        style={{
+          boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.2)",
         }}
-      />
+      >
+        <Datetime
+          input={false}
+          timeFormat={false}
+          onChange={(value) => {
+            setCloseDate(value);
+          }}
+          onClose={() => {
+            setActiveCalendar(!activeCalendar);
+          }}
+        />
+      </Flex>
     );
   };
 
@@ -308,16 +304,18 @@ const addDealModal = () => {
                 Client/Lead
               </Text>
 
-              <Input
+              {/* <Input
                 value={client}
                 fontSize={"13px"}
                 variant={"flushed"}
-                onChange={setClient}
+                onChange={(value) => {
+                  setClient(value.target.value);
+                }}
                 onClick={() => {
                   setActiveClientSelect(!activeClientSelect);
                 }}
-              />
-              <ClientSelect />
+              /> */}
+              <SelectClientLead />
             </Flex>
             <Flex flexDirection={"column"} width={"100%"} marginLeft={"10px"}>
               <Text fontSize={"13px"} textColor={"vimdesk_blue"}>
@@ -363,9 +361,8 @@ const addDealModal = () => {
               fontSize={"13px"}
               variant={"flushed"}
               value={new Date(closeDate).toDateString()}
-              // onChange={setSignInWorkspaceInput}
               onClick={() => {
-                setActiveCalendar(!archiveDeal);
+                setActiveCalendar(!activeCalendar);
               }}
             />
 

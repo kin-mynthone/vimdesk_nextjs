@@ -483,7 +483,7 @@ const NavigationBar = () => {
               </Flex>
             </AccordionButton>
           </AccordionItem>
-          <AccordionItem>
+          {/* <AccordionItem>
             <AccordionButton
               _focus={{ border: "none" }}
               border={"none"}
@@ -535,7 +535,7 @@ const NavigationBar = () => {
                 {active_tab_index == 3 && <VerticalLine />}
               </Flex>
             </AccordionButton>
-          </AccordionItem>
+          </AccordionItem> */}
           <AccordionItem>
             <AccordionButton
               _focus={{ border: "none" }}
@@ -589,7 +589,7 @@ const NavigationBar = () => {
               </Flex>
             </AccordionButton>
           </AccordionItem>
-          <AccordionItem>
+          {/* <AccordionItem>
             <AccordionButton
               _focus={{ border: "none" }}
               border={"none"}
@@ -745,7 +745,7 @@ const NavigationBar = () => {
                 {active_tab_index == 7 && <VerticalLine />}
               </Flex>
             </AccordionButton>
-          </AccordionItem>
+          </AccordionItem> */}
         </Accordion>
       </Flex>
       <Spacer />
@@ -803,7 +803,7 @@ const HeaderMenu = () => {
   );
   return (
     <Flex flexDirection={"row"} justifyContent={"space-around"}>
-      <MotionButton
+      {/* <MotionButton
         backgroundColor={"transparent"}
         _focus={{ border: "none" }}
         _focusWithin={{ backgroundColor: "transparent" }}
@@ -818,7 +818,7 @@ const HeaderMenu = () => {
         onClick={() => {}}
       >
         <Image alt="profile" src={Notification} height={18} width={18} />
-      </MotionButton>
+      </MotionButton> */}
       <MotionButton
         backgroundColor={"transparent"}
         _focus={{ border: "none" }}

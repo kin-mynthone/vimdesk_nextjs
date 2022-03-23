@@ -22,7 +22,7 @@ const addDealModalStore = create((set) => ({
   set_sales_agent: (value) =>
     set((state) => ({ sales_agent: value.target.value })),
 
-  set_client: (value) => set((state) => ({ client: value.target.value })),
+  set_client: (value) => set((state) => ({ client: value })),
 
   set_deals_priority: (value) => set((state) => ({ deals_priority: value })),
 

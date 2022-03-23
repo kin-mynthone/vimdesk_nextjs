@@ -6,7 +6,13 @@ const dealPriorityData = [
     name: "On Hold",
   },
   {
-    name: "Cold Deal",
+    name: "Called on phone",
+  },
+  {
+    name: "Meeting",
+  },
+  {
+    name: "Negotiation",
   },
 ];
 export default dealPriorityData;
