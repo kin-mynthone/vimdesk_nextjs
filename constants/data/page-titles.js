@@ -37,5 +37,21 @@ const pageTitles = [
     id: 7,
     title: "Tickets",
   },
+  {
+    id: 8,
+    title: "Notification",
+  },
+  {
+    id: 9,
+    title: "Todo",
+  },
+  {
+    id: 10,
+    title: "Reminders",
+  },
+  {
+    id: 11,
+    title: "Workspace",
+  },
 ];
 export default pageTitles;

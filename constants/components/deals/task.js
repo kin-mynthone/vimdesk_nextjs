@@ -24,7 +24,7 @@ const MyTask = ({ task, index }) => {
             marginBottom={"20px"}
             backgroundColor={"#F7FAFB"}
             style={{
-              boxShadow: "0px 0px 5px 0px #CCCCCC",
+              boxShadow: "0px 0px 5px 0px #DDDDDD",
             }}
           >
             <Flex flexDirection={"row"}>
