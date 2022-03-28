@@ -88,7 +88,7 @@ const addDealModal = () => {
 
   const DealPrioritySelect = () => {
     const handleChange = (event) => {
-      setDealsPriority(event.target.value);
+      setDealsPriority(event);
     };
 
     return (
@@ -111,6 +111,7 @@ const addDealModal = () => {
     { value: "strawberry", label: "Strawberry" },
     { value: "vanilla", label: "Vanilla" },
   ];
+
   const SelectClientLead = () => <Select options={options} />;
 
   function DealStatusList() {
@@ -127,7 +128,7 @@ const addDealModal = () => {
 
   const DealStatusSelect = () => {
     const handleChange = (event) => {
-      setDealsStatus(event.target.value);
+      setDealsStatus(event);
     };
     return (
       <Select

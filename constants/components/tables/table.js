@@ -12,7 +12,26 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const MyTable = ({ width, jsonData }) => {
+const MyTable = ({ width, jsonData, onClickData }) => {
+  const RowData = () => {
+    return (
+      <Tr
+        _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
+        onClick={() => {
+          onClickData();
+        }}
+      >
+        <Td>inches</Td>
+        <Td>millimetres (mm)</Td>
+        <Td>25.4</Td>
+        <Td>25.4</Td>
+        <Td>25.4</Td>
+        <Td>25.4</Td>
+        <Td>25.4</Td>
+      </Tr>
+    );
+  };
+
   return (
     <Flex
       borderRadius={13}
@@ -38,48 +57,7 @@ const MyTable = ({ width, jsonData }) => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr
-            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
-            onClick={() => {
-              alert("adasd");
-            }}
-          >
-            <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-          </Tr>
-          <Tr
-            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
-            onClick={() => {
-              alert("adasd");
-            }}
-          >
-            <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
-            <Td>30.48</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-          </Tr>
-          <Tr
-            _hover={{ backgroundColor: "#DFF5FF", cursor: "pointer" }}
-            onClick={() => {
-              alert("adasd");
-            }}
-          >
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td>0.91444</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-            <Td>25.4</Td>
-          </Tr>
+          <RowData />
         </Tbody>
       </Table>
     </Flex>

@@ -944,6 +944,9 @@ function MyApp({ Component, pageProps }) {
         alignItems={"stretch"}
         flexDirection={"row"}
         bgColor={"vimdesk_main_bg"}
+        style={{
+          overflow: "hidden",
+        }}
       >
         {IS_CREDENTIAL_VALID && <NavigationBar />}
         <Flex flexDirection={"column"}>

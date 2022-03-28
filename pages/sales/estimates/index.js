@@ -20,8 +20,11 @@ import {
 import { PlusSignWhite } from "../../../assets";
 import Image from "next/image";
 import { MyTable } from "../../../constants/components/tables";
-import { addEstimateModalStore } from "../../../stores/estimates";
-import { AddEstimateModal } from "../../../constants/components/estimates";
+import { addEstimateModalStore, estimates } from "../../../stores/estimates";
+import {
+  AddEstimateModal,
+  Details,
+} from "../../../constants/components/estimates";
 
 import {
   Search,
@@ -39,6 +42,10 @@ export default function Home() {
   const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
+
+  const activeDetails = estimates((state) => state.active_details);
+
+  const setActiveDetails = estimates((state) => state.set_active_details);
 
   const setActiveTabIndex = navigationBarStore(
     (state) => state.set_active_tab_index
@@ -92,6 +99,21 @@ export default function Home() {
     );
   };
 
+  function showDetails() {
+    setActiveDetails(!activeDetails);
+  }
+
+  const Main = () => {
+    return (
+      <>
+        {" "}
+        <Options />
+        <MyTable width={width * 0.78} onClickData={showDetails} />
+        <AddEstimateModal />
+      </>
+    );
+  };
+
   return (
     <Flex
       alignItems={"stretch"}
@@ -100,14 +122,12 @@ export default function Home() {
       width={width}
       bgColor={"vimdesk_main_bg"}
       maxWidth={width * 0.81}
+      maxHeight={height}
       style={{
         overflow: "auto",
       }}
     >
-      {" "}
-      <Options />
-      <MyTable width={width * 0.78} />
-      <AddEstimateModal />
+      {!activeDetails ? <Main /> : <Details />}
     </Flex>
   );
 }

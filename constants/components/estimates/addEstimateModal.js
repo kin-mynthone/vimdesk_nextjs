@@ -18,12 +18,10 @@ import {
   Th,
   Td,
   Divider,
-  Select,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { MotionButton } from "../motion";
 import { dealPriorityData, initialData } from "../..";
-import SelectSearch, { fuzzySearch } from "react-select-search";
 import {
   Close,
   Minimize,
@@ -36,6 +34,9 @@ import {
 } from "../../../assets";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
+
+import Select from "react-select";
+
 const AddEstimateModal = () => {
   const addEstimateModalActiveStatus = addEstimateModalStore(
     (state) => state.active_status
@@ -47,47 +48,21 @@ const AddEstimateModal = () => {
 
   //----------------------------------------------------------
 
-  const title = addEstimateModalStore((state) => state.title);
+  const company = addEstimateModalStore((state) => state.company);
 
-  const setTitle = addEstimateModalStore((state) => state.set_title);
+  const setCompany = addEstimateModalStore((state) => state.set_company);
 
-  const amount = addEstimateModalStore((state) => state.amount);
+  const contact = addEstimateModalStore((state) => state.contact);
 
-  const setAmount = addEstimateModalStore((state) => state.set_amount);
+  const setContact = addEstimateModalStore((state) => state.set_contact);
 
-  const client = addEstimateModalStore((state) => state.client);
+  const reference = addEstimateModalStore((state) => state.reference);
 
-  const setClient = addEstimateModalStore((state) => state.set_client);
+  const setReference = addEstimateModalStore((state) => state.set_reference);
 
-  const salesAgent = addEstimateModalStore((state) => state.sales_agent);
+  const dueDate = addEstimateModalStore((state) => state.due_date);
 
-  const setSalesAgent = addEstimateModalStore((state) => state.set_sales_agent);
-
-  const estimatePriority = addEstimateModalStore(
-    (state) => state.estimate_priority
-  );
-
-  const setEstimatePriority = addEstimateModalStore(
-    (state) => state.set_estimate_priority
-  );
-
-  const estimateStatus = addEstimateModalStore(
-    (state) => state.estimate_status
-  );
-
-  const setEstimateStatus = addEstimateModalStore(
-    (state) => state.set_estimate_status
-  );
-
-  const closeDate = addEstimateModalStore((state) => state.close_date);
-
-  const setCloseDate = addEstimateModalStore((state) => state.set_close_date);
-
-  const archiveDeal = addEstimateModalStore((state) => state.archive_deal);
-
-  const setArchiveDeal = addEstimateModalStore(
-    (state) => state.set_archive_deal
-  );
+  const setDueDate = addEstimateModalStore((state) => state.set_due_date);
 
   const activeCalendar = addEstimateModalStore(
     (state) => state.active_calendar
@@ -97,73 +72,135 @@ const AddEstimateModal = () => {
     (state) => state.set_active_calendar
   );
 
+  //----------------------------------------------------------
+
+  const title = addEstimateModalStore((state) => state.title);
+
+  const setTitle = addEstimateModalStore((state) => state.set_title);
+
+  const quantity = addEstimateModalStore((state) => state.quantity);
+
+  const setQuantity = addEstimateModalStore((state) => state.set_quantity);
+
+  const description = addEstimateModalStore((state) => state.description);
+
+  const setDescription = addEstimateModalStore(
+    (state) => state.set_description
+  );
+
+  const unitPrice = addEstimateModalStore((state) => state.unit_price);
+
+  const setUnitPrice = addEstimateModalStore((state) => state.set_unit_price);
+
+  const taxTable = addEstimateModalStore((state) => state.tax_table);
+
+  const setTaxTable = addEstimateModalStore((state) => state.set_tax_table);
+
+  const totalTable = addEstimateModalStore((state) => state.total_table);
+
+  const setTotalTable = addEstimateModalStore((state) => state.set_total_table);
+
+  const subtotal = addEstimateModalStore((state) => state.subtotal);
+
+  const setSubtotal = addEstimateModalStore((state) => state.set_subtotal);
+
+  const tax = addEstimateModalStore((state) => state.tax);
+
+  const setTax = addEstimateModalStore((state) => state.set_tax);
+
+  const total = addEstimateModalStore((state) => state.total);
+
+  const setTotal = addEstimateModalStore((state) => state.set_total);
+
   const clearData = addEstimateModalStore((state) => state.clear_date);
-
-  const activeClientSelect = addEstimateModalStore(
-    (state) => state.active_client_select
+  const clearDataTable = addEstimateModalStore(
+    (state) => state.clear_date_table
   );
 
-  const setActiveClientSelect = addEstimateModalStore(
-    (state) => state.set_active_client_select
-  );
-
-  const DealPrioritySelect = () => {
-    const handleChange = (event) => {
-      setEstimatePriority(event.target.value);
-    };
-
+  const DueDateCalendar = () => {
     return (
-      <Select
-        variant="flushed"
-        height={"38.5px"}
-        textColor={"vimdesk_faded_text"}
-        fontWeight={300}
-        fontSize={13}
-        value={estimatePriority}
-        onChange={handleChange}
-        iconColor="vimdesk_gray"
-      >
-        {dealPriorityData.map((value, index) => (
-          <option key={index + 1} value={value.name}>
-            {value.name}
-          </option>
-        ))}
-      </Select>
-    );
-  };
-
-  const DealStatusSelect = () => {
-    const handleChange = (event) => {
-      setEstimateStatus(event.target.value);
-    };
-    return (
-      <Select
-        variant="flushed"
-        height={"38.5px"}
-        textColor={"vimdesk_faded_text"}
-        fontWeight={300}
-        fontSize={13}
-        value={estimateStatus}
-        onChange={handleChange}
-        iconColor="vimdesk_gray"
-      >
-        {initialData.columnOrder.map((value, index) => (
-          <option key={index + 1} value={initialData.columns[value].title}>
-            {initialData.columns[value].title}
-          </option>
-        ))}
-      </Select>
-    );
-  };
-
-  const CloseDateCalendar = () => {
-    return (
-      <Datetime
-        timeFormat={false}
-        open={activeCalendar}
-        onChange={(value) => {
-          setCloseDate(value);
+      <Flex
+        position={"absolute"}
+        zIndex={1000}
+        marginTop={"60px"}
+        style={{
+          boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.2)",
         }}
+      >
+        <Datetime
+          input={false}
+          timeFormat={false}
+          onChange={(value) => {
+            setDueDate(value);
+          }}
+          onClose={() => {
+            setActiveCalendar(!activeCalendar);
+          }}
+        />
+      </Flex>
+    );
+  };
+
+  function CompanyList() {
+    const options = [];
+    dealPriorityData.map((value, index) => {
+      options.push({
+        value: value.name,
+        label: value.name,
+      });
+    });
+
+    return options;
+  }
+
+  const CompanySelect = () => {
+    const handleChange = (event) => {
+      setCompany(event);
+    };
+
+    return (
+      <Select
+        variant="flushed"
+        height={"38.5px"}
+        textColor={"vimdesk_faded_text"}
+        fontWeight={300}
+        fontSize={13}
+        value={company}
+        onChange={handleChange}
+        iconColor="vimdesk_gray"
+        options={CompanyList()}
+      />
+    );
+  };
+
+  function ContactList() {
+    const options = [];
+    dealPriorityData.map((value, index) => {
+      options.push({
+        value: value.name,
+        label: value.name,
+      });
+    });
+
+    return options;
+  }
+
+  const ContactSelect = () => {
+    const handleChange = (event) => {
+      setContact(event);
+    };
+
+    return (
+      <Select
+        variant="flushed"
+        height={"38.5px"}
+        textColor={"vimdesk_faded_text"}
+        fontWeight={300}
+        fontSize={13}
+        value={contact}
+        onChange={handleChange}
+        iconColor="vimdesk_gray"
+        options={ContactList()}
       />
     );
   };
@@ -272,12 +309,7 @@ const AddEstimateModal = () => {
                 Select Company
               </Text>
 
-              <Input
-                value={title}
-                fontSize={"13px"}
-                variant={"flushed"}
-                onChange={setTitle}
-              />
+              <CompanySelect />
             </Flex>
 
             <Flex flexDirection={"column"} width={"100%"} marginLeft={"10px"}>
@@ -285,12 +317,7 @@ const AddEstimateModal = () => {
                 Select Contact
               </Text>
 
-              <Input
-                value={amount}
-                fontSize={"13px"}
-                variant={"flushed"}
-                onChange={setAmount}
-              />
+              <ContactSelect />
             </Flex>
 
             <Flex flexDirection={"column"} width={"100%"} marginLeft={"10px"}>
@@ -300,14 +327,14 @@ const AddEstimateModal = () => {
               <Input
                 fontSize={"13px"}
                 variant={"flushed"}
-                value={new Date(closeDate).toDateString()}
+                value={new Date(dueDate).toDateString()}
                 // onChange={setSignInWorkspaceInput}
                 onClick={() => {
-                  setActiveCalendar(!archiveDeal);
+                  setActiveCalendar(!activeCalendar);
                 }}
               />
 
-              {activeCalendar && <CloseDateCalendar />}
+              {activeCalendar && <DueDateCalendar />}
 
               <Flex
                 flexDirection={"column"}
@@ -320,10 +347,10 @@ const AddEstimateModal = () => {
                 </Text>
 
                 <Input
-                  value={salesAgent}
+                  value={reference}
                   fontSize={"13px"}
                   variant={"flushed"}
-                  onChange={setSalesAgent}
+                  onChange={setReference}
                 />
               </Flex>
             </Flex>
@@ -360,55 +387,54 @@ const AddEstimateModal = () => {
                       <Image alt="vimdesk" src={Burger} width={13} />
                     </Flex>
                   </Td>
-
                   <Td>
                     <Input
-                      // value={amount}
+                      // value={company}
                       fontSize={"13px"}
                       variant={"outline"}
                       borderColor={"lightgray"}
                       focusBorderColor={"#47ADDD"}
-                      //  onChange={setAmount}
+                      //  onChange={setCompany}
                     />
                   </Td>
                   <Td>
                     <Input
-                      // value={amount}
+                      // value={company}
                       fontSize={"13px"}
                       variant={"outline"}
                       borderColor={"lightgray"}
                       focusBorderColor={"#47ADDD"}
-                      // onChange={setAmount}
+                      // onChange={setCompany}
                     />
                   </Td>
                   <Td>
                     <Input
-                      //  value={amount}
+                      //  value={company}
                       fontSize={"13px"}
                       variant={"outline"}
                       borderColor={"lightgray"}
                       focusBorderColor={"#47ADDD"}
-                      // onChange={setAmount}
+                      // onChange={setCompany}
                     />
                   </Td>
                   <Td>
                     <Input
-                      //  value={amount}
+                      //  value={company}
                       fontSize={"13px"}
                       variant={"outline"}
                       borderColor={"lightgray"}
                       focusBorderColor={"#47ADDD"}
-                      // onChange={setAmount}
+                      // onChange={setCompany}
                     />
                   </Td>
                   <Td>
                     <Input
-                      //  value={amount}
+                      //  value={company}
                       fontSize={"13px"}
                       variant={"outline"}
                       borderColor={"lightgray"}
                       focusBorderColor={"#47ADDD"}
-                      // onChange={setAmount}
+                      // onChange={setCompany}
                     />
                   </Td>
                   <Td>25.4</Td>

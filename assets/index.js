@@ -23,6 +23,18 @@ export { default as Trash } from "./icons/trash-alt.svg";
 export { default as TextField } from "./icons/text-fields.svg";
 export { default as Discount } from "./icons/percentage.svg";
 export { default as Burger } from "./icons/burger.svg";
+export { default as Back } from "./icons/back.svg";
+export { default as Call } from "./icons/call.svg";
+export { default as Events } from "./icons/events.svg";
+export { default as Message } from "./icons/message.svg";
+export { default as Note } from "./icons/note.svg";
+export { default as Project } from "./icons/project.svg";
+export { default as Request } from "./icons/request.svg";
+export { default as Task } from "./icons/task.svg";
+export { default as Invoice } from "./icons/invoice.svg";
+export { default as Deals } from "./icons/deals.svg";
+export { default as Estimates } from "./icons/estimates.svg";
+export { default as Contacts } from "./icons/contacts.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";
