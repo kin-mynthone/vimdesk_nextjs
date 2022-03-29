@@ -40,6 +40,8 @@ export { default as Deals } from "./icons/deals.svg";
 export { default as Estimates } from "./icons/estimates.svg";
 export { default as Contacts } from "./icons/contacts.svg";
 export { default as SendMessage } from "./icons/send-message.svg";
+export { default as TrashWhite } from "./icons/trash.svg";
+export { default as AttachedFile } from "./icons/attached-file.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

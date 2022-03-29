@@ -8,22 +8,27 @@ import {
   Text,
   Flex,
   Spacer,
+  Input,
+  InputGroup,
+  InputRightElement,
+  HStack,
+  Textarea,
 } from "@chakra-ui/react";
 import { MotionButton } from "../motion";
-import {
-  Close,
-  Minimize,
-  Check,
-  Discount,
-  Trash,
-  TextField,
-  Burger,
-  PlusSign,
-} from "../../../assets";
+import { Close, Minimize, TrashWhite, AttachedFile } from "../../../assets";
 import Image from "next/image";
 const EmailModal = () => {
   const emailActiveStatus = emailStore((state) => state.active_status);
   const setEmailActiveStatus = emailStore((state) => state.set_active_status);
+
+  const receiver = emailStore((state) => state.receiver);
+  const setReceiver = emailStore((state) => state.set_receiver);
+
+  const subject = emailStore((state) => state.subject);
+  const setSubject = emailStore((state) => state.set_subject);
+
+  const content = emailStore((state) => state.content);
+  const setContent = emailStore((state) => state.set_content);
 
   return (
     <Modal
@@ -38,6 +43,7 @@ const EmailModal = () => {
         justifyContent={"center"}
         alignItems={"center"}
         width={"50%"}
+        height={"60%"}
         borderRadius={13}
       >
         <Flex
@@ -111,11 +117,195 @@ const EmailModal = () => {
           flexDirection={"column"}
           width={"100%"}
           height={"100%"}
-          paddingX={8}
           paddingTop={3}
-          paddingBottom={6}
+          paddingX={1}
+          paddingBottom={3}
           borderBottomRadius={13}
-        ></Flex>
+        >
+          <Flex flexDirection={"column"} paddingX={4}>
+            <InputGroup>
+              <Input
+                fontSize={"13px"}
+                variant={"flushed"}
+                placeholder="Recipient"
+                onChange={setReceiver}
+              />
+              <InputRightElement>
+                <HStack marginRight={9}>
+                  <MotionButton
+                    marginRight={2}
+                    backgroundColor={"transparent"}
+                    _focus={{ border: "none" }}
+                    size="xxs"
+                    _focusWithin={{ backgroundColor: "transparent" }}
+                    _hover={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    whileTap={{
+                      scale: 1,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    onClick={() => {}} //update this
+                  >
+                    <Text
+                      fontSize={13}
+                      fontWeight={"bold"}
+                      color={"vimdesk_faded_blue"}
+                    >
+                      CC
+                    </Text>
+                  </MotionButton>
+                  <MotionButton
+                    backgroundColor={"transparent"}
+                    _focus={{ border: "none" }}
+                    size="xxs"
+                    _focusWithin={{ backgroundColor: "transparent" }}
+                    _hover={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    whileTap={{
+                      scale: 1,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    onClick={() => {}} //update this
+                  >
+                    <Text
+                      fontSize={13}
+                      fontWeight={"bold"}
+                      color={"vimdesk_faded_blue"}
+                    >
+                      Bcc
+                    </Text>
+                  </MotionButton>
+                </HStack>
+              </InputRightElement>
+            </InputGroup>
+
+            <InputGroup>
+              <Input
+                fontSize={"13px"}
+                variant={"flushed"}
+                placeholder="Subject"
+                onChange={setSubject}
+              />
+              <InputRightElement>
+                <HStack marginRight={20}>
+                  <MotionButton
+                    backgroundColor={"transparent"}
+                    _focus={{ border: "none" }}
+                    size="xxs"
+                    _focusWithin={{ backgroundColor: "transparent" }}
+                    _hover={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    whileTap={{
+                      scale: 1,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    onClick={() => {}} //update this
+                  >
+                    <Text
+                      fontSize={13}
+                      fontWeight={"bold"}
+                      color={"vimdesk_faded_blue"}
+                    >
+                      Select Template
+                    </Text>
+                  </MotionButton>
+                </HStack>
+              </InputRightElement>
+            </InputGroup>
+          </Flex>
+          <Textarea
+            fontSize={"13px"}
+            marginTop={5}
+            height={"100%"}
+            border={"none"}
+            _focus={{ border: "none" }}
+            placeholder="Here is a sample placeholder"
+            resize={"none"}
+          />
+          <Flex
+            flexDirection={"row"}
+            paddingX={4}
+            marginTop={"40px"}
+            justifyContent={"space-between"}
+          >
+            <HStack>
+              <MotionButton
+                size="xxs"
+                marginY={"10px"}
+                paddingX={10}
+                height={"40px"}
+                backgroundColor={"vimdesk_blue"}
+                _focus={{ border: "none" }}
+                _focusWithin={{ backgroundColor: "vimdesk_blue" }}
+                _hover={{ backgroundColor: "vimdesk_blue", cursor: "pointer" }}
+                borderRadius={15}
+                whileTap={{
+                  scale: 1,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                onClick={null} //update this
+              >
+                <Text fontSize={"15px"}>Send</Text>
+              </MotionButton>
+
+              <MotionButton
+                size="xxs"
+                marginY={"10px"}
+                paddingX={5}
+                height={"40px"}
+                backgroundColor={"vimdesk_blue"}
+                _focus={{ border: "none" }}
+                _focusWithin={{ backgroundColor: "vimdesk_blue" }}
+                _hover={{ backgroundColor: "vimdesk_blue", cursor: "pointer" }}
+                borderRadius={15}
+                whileTap={{
+                  scale: 1,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                onClick={null} //update this
+              >
+                <Image alt="vimdesk" src={AttachedFile} width={20} />
+              </MotionButton>
+            </HStack>
+
+            <MotionButton
+              size="xxs"
+              marginY={"10px"}
+              paddingX={5}
+              height={"40px"}
+              backgroundColor={"vimdesk_red"}
+              _focus={{ border: "none" }}
+              _focusWithin={{ backgroundColor: "vimdesk_red" }}
+              _hover={{ backgroundColor: "vimdesk_red", cursor: "pointer" }}
+              borderRadius={15}
+              whileTap={{
+                scale: 1,
+              }}
+              whileHover={{
+                scale: 1.1,
+              }}
+              onClick={null} //update this
+            >
+              <Image alt="vimdesk" src={TrashWhite} width={20} />
+            </MotionButton>
+          </Flex>
+        </Flex>
       </ModalContent>
     </Modal>
   );

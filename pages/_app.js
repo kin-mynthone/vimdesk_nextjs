@@ -76,8 +76,8 @@ const NavigationBar = () => {
   const setActiveSalesSubIndex = navigationBarStore(
     (state) => state.set_active_sales_sub_tab_index
   );
-  const { width } = useWindowSize();
-  const { height } = useWindowSize();
+  const { width, height } = useWindowSize();
+
   return (
     <Flex
       sx={{
@@ -89,10 +89,9 @@ const NavigationBar = () => {
       paddingY={"5"}
       backgroundColor={"vimdesk_bg"}
       h={height}
-      w={width * 0.18}
+      w={width * 0.15}
       bgColor={"vimdesk_bg"}
       alignItems={"center"}
-      paddingTop={"5"}
     >
       <Image src={VimDeskLogo} alt="vimdesk_logo" height={height * 0.06} />
 
@@ -121,7 +120,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -195,7 +194,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -237,7 +236,7 @@ const NavigationBar = () => {
                 flexDirection={"column"}
                 paddingY={"5"}
                 backgroundColor={"vimdesk_bg"}
-                w={width * 0.16}
+                w={width * 0.13}
                 borderBottomStartRadius={20}
                 borderBottomEndRadius={20}
                 bgColor={"#EFEFEF"}
@@ -245,7 +244,7 @@ const NavigationBar = () => {
                 paddingTop={"5"}
               >
                 <Button
-                  w={width * 0.14}
+                  w={width * 0.11}
                   marginTop={3}
                   justifyContent={"start"}
                   paddingY={"28px"}
@@ -291,7 +290,7 @@ const NavigationBar = () => {
                   </Text>
                 </Button>
                 <Button
-                  w={width * 0.14}
+                  w={width * 0.11}
                   marginTop={3}
                   justifyContent={"start"}
                   paddingY={"28px"}
@@ -337,7 +336,7 @@ const NavigationBar = () => {
                   </Text>
                 </Button>
                 <Button
-                  w={width * 0.14}
+                  w={width * 0.11}
                   marginTop={3}
                   justifyContent={"start"}
                   paddingY={"28px"}
@@ -384,7 +383,7 @@ const NavigationBar = () => {
                   </Text>
                 </Button>
                 <Button
-                  w={width * 0.14}
+                  w={width * 0.11}
                   marginTop={3}
                   justifyContent={"start"}
                   paddingY={"28px"}
@@ -447,7 +446,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -499,7 +498,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -552,7 +551,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -605,7 +604,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -660,7 +659,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -711,7 +710,7 @@ const NavigationBar = () => {
               }}
             >
               <Flex
-                w={width * 0.16}
+                w={width * 0.13}
                 justifyContent={"start"}
                 paddingY={"20px"}
                 paddingLeft={5}
@@ -754,7 +753,7 @@ const NavigationBar = () => {
       <MotionButton
         backgroundColor={"transparent"}
         _focus={{ border: "none" }}
-        w={width * 0.16}
+        w={width * 0.13}
         _focusWithin={{ backgroundColor: "transparent" }}
         _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
         flexDirection={"row"}
