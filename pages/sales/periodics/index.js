@@ -38,6 +38,10 @@ export default function Home() {
     (state) => state.set_active_sales_sub_tab_index
   );
 
+  function showDetails() {
+    //add function
+  }
+
   useEffect(() => {
     setIsCredentialValid(true);
     setActiveTabIndex(1);
@@ -56,7 +60,7 @@ export default function Home() {
         overflow: "auto",
       }}
     >
-      <MyTable width={width * 0.78} />
+      <MyTable width={width * 0.78} onClickData={showDetails} />
     </Flex>
   );
 }

@@ -8,14 +8,20 @@ import {
   Spacer,
   Text,
   useDisclosure,
-  Collapse,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Select,
 } from "@chakra-ui/react";
 
 import { MotionButton } from "../../constants/components/motion";
 
 import { signInInputStore } from "../../stores/index";
-import { remindersStore } from "../../stores/Reminders";
+import { remindersStore } from "../../stores/reminders";
 
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -28,15 +34,17 @@ import {
   ThinArrowRight,
   CalendarToday,
   ArrowDown,
+  CloseButtonGray,
 } from "../../assets";
+import { isEmpty, isNull } from "lodash";
 
 export default function Reminders() {
   const { height, width } = useWindowSize();
+
   let dateNow = new Date();
   let monthNowIndex = dateNow.getMonth();
   let yearNow = dateNow.getFullYear();
-
-  const setIsCredentialValid = signInInputStore(
+  let setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
 
@@ -248,8 +256,8 @@ export default function Reminders() {
   };
 
   const YearButton = () => {
-    let currentYear = new Date().getFullYear(),
-      years = [];
+    const currentYear = new Date().getFullYear();
+    let years = [];
     let startYear = 2010;
     while (startYear <= currentYear + 20) {
       years.push(startYear++);
@@ -273,10 +281,10 @@ export default function Reminders() {
         height={"38.5px"}
         _focusWithin={{
           backgroundColor: "#E1F5FE",
-          borderColor: "vimdesk_blue",
+          borderColor: "vimdesk_gray",
         }}
         _hover={{ backgroundColor: "#E1F5FE", cursor: "pointer" }}
-        borderColor={"vimdesk_blue"}
+        borderColor={"vimdesk_gray"}
         backgroundColor={"#F7FAFB"}
         textColor={"vimdesk_faded_text"}
         fontWeight={300}
@@ -286,14 +294,7 @@ export default function Reminders() {
         }}
         value={selectedYear}
         onChange={handleChange}
-        icon={
-          <Image
-            src={ArrowDown}
-            alt="vimdesk_icon"
-            height={"7px"}
-            width={"30px"}
-          />
-        }
+        iconColor="vimdesk_gray"
       >
         {years.map((value, index) => (
           <option key={index + 1} value={value}>
@@ -403,36 +404,117 @@ export default function Reminders() {
   };
 
   const MainCalendar = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const eventTitle = remindersStore((state) => state.event_title);
+    const eventDesc = remindersStore((state) => state.event_desc);
+
+    const setEventTitle = remindersStore((state) => state.set_event_title);
+    const setEventDesc = remindersStore((state) => state.set_event_desc);
+
+    const selectedEvent = (event) => {
+      setEventTitle(event.title);
+      setEventDesc(event.desc);
+      onOpen();
+    };
     return (
-      <BigCalendar
-        localizer={localizer}
-        events={myEvent}
-        // onEventDrop={onEventDrop}
-        // onEventResize={onEventResize}
-        resizable
-        views={["month", "week"]}
-        popup
-        //formats={formats}
-        selectable
-        view={ActiveCalendarView}
-        onNavigate={onNavigateToday}
-        defaultView="month"
-        startAccessor="start"
-        endAccessor="end"
-        defaultDate={moment().toDate()}
-        date={selectedMonthDate}
-        eventPropGetter={eventStyleGetter}
-        components={{
-          toolbar: "hide",
-          header: "hide",
-        }}
-        style={{
-          height: "60vh",
-          width: width * 0.55,
-          fontSize: 13,
-          fontWeight: 300,
-        }}
-      />
+      <>
+        <BigCalendar
+          localizer={localizer}
+          events={myEvent}
+          // onEventDrop={onEventDrop}
+          // onEventResize={onEventResize}
+          resizable
+          popup
+          selectable
+          defaultView="month"
+          startAccessor="start"
+          endAccessor="end"
+          onNavigate={() => {}}
+          defaultDate={moment().toDate()}
+          date={selectedMonthDate}
+          eventPropGetter={eventStyleGetter}
+          onSelectEvent={(event) => selectedEvent(event)}
+          components={{
+            toolbar: "hide",
+            header: "hide",
+          }}
+          style={{
+            height: "60vh",
+            width: width * 0.55,
+            fontSize: 13,
+            fontWeight: 300,
+          }}
+        />
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent borderRadius={13} bgColor={"vimdesk_bg"}>
+            <Flex
+              alignItems={"center"}
+              flexDirection={"column"}
+              padding={"20px"}
+              width={"100%"}
+            >
+              <Flex
+                alignItems={"center"}
+                flexDirection={"row"}
+                justifyContent={"space-between"}
+                width={"100%"}
+                marginRight={"5px"}
+              >
+                <Text
+                  textColor={"vimdesk_faded_text"}
+                  fontWeight={300}
+                  fontSize={20}
+                >
+                  {eventTitle}
+                </Text>
+                <MotionButton
+                  backgroundColor={"transparent"}
+                  _focus={{ border: "none" }}
+                  _focusWithin={{ backgroundColor: "transparent" }}
+                  _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+                  flexDirection={"row"}
+                  size="xxs"
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  whileHover={{
+                    scale: 1.3,
+                  }}
+                  onClick={onClose} //update this
+                >
+                  <Image
+                    src={CloseButtonGray}
+                    alt="vimdesk_icon"
+                    height={12}
+                    width={12}
+                  />
+                </MotionButton>
+              </Flex>
+              <Flex
+                alignItems={"center"}
+                width={"100%"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                minHeight={"100px"}
+              >
+                <Text
+                  textColor={"vimdesk_faded_text"}
+                  fontSize={13}
+                  width={"100%"}
+                  variant="body"
+                  textAlign={"center"}
+                  fontWeight={400}
+                  noOfLines={4}
+                >
+                  {eventDesc == "" ? "No Description" : eventDesc}
+                </Text>
+              </Flex>
+            </Flex>
+          </ModalContent>
+        </Modal>
+      </>
     );
   };
 

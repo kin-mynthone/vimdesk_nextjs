@@ -15,6 +15,7 @@ export { default as Workspace } from "./icons/workspace.svg";
 export { default as ThinArrowLeft } from "./icons/thin-left-arrow.svg";
 export { default as ThinArrowRight } from "./icons/thin-right-arrow.svg";
 export { default as CalendarToday } from "./icons/calendar-today.svg";
+export { default as CloseButtonGray } from "./icons/close-button-gray.svg";
 export { default as HidePassword } from "./icons/hide-password.svg";
 export { default as ShowPassword } from "./icons/show-password.svg";
 export { default as Minimize } from "./icons/minimize.svg";
@@ -38,6 +39,7 @@ export { default as Invoice } from "./icons/invoice.svg";
 export { default as Deals } from "./icons/deals.svg";
 export { default as Estimates } from "./icons/estimates.svg";
 export { default as Contacts } from "./icons/contacts.svg";
+export { default as SendMessage } from "./icons/send-message.svg";
 
 export { default as InactiveDashboard } from "./icons/inactive-dashboard.svg";
 export { default as InactiveDeals } from "./icons/inactive-deals.svg";

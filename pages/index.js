@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useWindowSize } from "../custom_hooks/";
 import { signInInputStore, signUpInputStore } from "../stores/index";
 
-import { SpinnerModal } from "../constants/components/spinner";
 import {
   Box,
   Button,
@@ -366,7 +365,6 @@ export default function Home() {
 
   return (
     <Box minH={height} minW={width} bg={"vimdesk_bg"}>
-      <SpinnerModal />
       <Flex
         flexDirection={width < 1024 ? "column" : "row"}
         paddingLeft={"14"}

@@ -15,7 +15,8 @@ import { THEME_DATA, pageTitles } from "../constants/";
 import "@fontsource/poppins";
 import Image from "next/image";
 import Router from "next/router";
-
+import { SpinnerModal } from "../constants/components/spinner";
+import { EmailModal } from "../constants/components/email";
 import { useWindowSize } from "../custom_hooks";
 import NextNProgress from "nextjs-progressbar";
 import { signInInputStore, navigationBarStore } from "../stores/index";
@@ -953,12 +954,14 @@ function MyApp({ Component, pageProps }) {
           overflow: "hidden",
         }}
       >
+        <SpinnerModal />
+        <EmailModal />
         {IS_CREDENTIAL_VALID && <NavigationBar />}
         <Flex flexDirection={"column"}>
           {IS_CREDENTIAL_VALID && <Header />}
           <Flex marginTop={IS_CREDENTIAL_VALID && "20px"}>
             <Component {...pageProps} />
-            {/* <FloatingActionButton /> */}
+            {IS_CREDENTIAL_VALID && <FloatingActionButton />}
           </Flex>
         </Flex>
         <NextNProgress height={5} color="#8947DD" />
