@@ -122,12 +122,8 @@ export default function Home() {
       width={width}
       bgColor={"vimdesk_main_bg"}
       maxWidth={width * 0.81}
-      maxHeight={height}
-      style={{
-        overflow: "auto",
-      }}
     >
-      {!activeDetails ? <Main /> : <Details />}
+      {!activeDetails ? <Main /> : <Details onBack={showDetails} />}
     </Flex>
   );
 }

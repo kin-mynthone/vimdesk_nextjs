@@ -847,7 +847,12 @@ const HeaderMenu = () => {
         whileHover={{
           scale: 1.3,
         }}
-        onClick={() => {}}
+        onClick={() => {
+          setActiveIndex(10);
+          Router.push({
+            pathname: "/reminders",
+          });
+        }}
       >
         <Image alt="profile" src={Calendar} height={18} width={18} />
       </MotionButton>

@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Flex,
-  Table,
+  Select,
   Divider,
   VStack,
   Spacer,
@@ -12,8 +12,9 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import { MotionButton } from "../motion";
 import { useWindowSize } from "../../../custom_hooks";
-import { sampleDataDetails } from "../../";
+import { sampleDataDetails, dealPriorityData } from "../../";
 import {
   Back,
   Note,
@@ -27,8 +28,9 @@ import {
   Deals,
   Invoice,
   Contacts,
+  ArrowDown,
 } from "../../../assets";
-const Details = ({ jsonData }) => {
+const Details = ({ onBack }) => {
   const { height, width } = useWindowSize();
   const ListItemComponent = ({ index }) => {
     return (
@@ -104,14 +106,18 @@ const Details = ({ jsonData }) => {
       <Flex
         borderRadius={13}
         marginLeft={"10px"}
-        marginBottom={"10px"}
         flex={2}
+        marginBottom={"10px"}
         backgroundColor={"#F7FAFB"}
+        flexDirection={"column"}
         padding={5}
         style={{
+          overflow: "auto",
           boxShadow: "0px 0px 5px 0px #CCCCCC",
         }}
+        maxHeight={height * 0.75}
       >
+        <Filter />
         <List spacing={3} width={"100%"}>
           {sampleDataDetails.map((entry, index) => (
             <ListItemComponent index={index} key={index} />
@@ -299,7 +305,7 @@ const Details = ({ jsonData }) => {
         }}
       >
         <Text fontSize={15} variant="body" fontWeight={"black"}>
-          Actions
+          Options
         </Text>
         <Flex
           flexDirection={"row"}
@@ -449,17 +455,113 @@ const Details = ({ jsonData }) => {
     );
   };
 
+  const Filter = () => {
+    const handleChange = (event) => {};
+
+    return (
+      <Select
+        alignSelf={"end"}
+        marginBottom={5}
+        placeholder={"asd"}
+        borderRadius={10}
+        borderWidth={1}
+        marginLeft={"15px"}
+        width={"18%"}
+        height={"38.5px"}
+        _focusWithin={{
+          backgroundColor: "vimdesk_purple",
+          borderColor: "vimdesk_purple",
+        }}
+        _hover={{ backgroundColor: "vimdesk_purple", cursor: "pointer" }}
+        backgroundColor={"vimdesk_purple"}
+        textColor={"white"}
+        fontWeight={300}
+        fontSize={13}
+        style={{
+          boxShadow: "0px 0px 5px 0px #DDDDDD",
+        }}
+        value={"asdasd"}
+        onChange={handleChange}
+        iconColor={"white"}
+      >
+        {dealPriorityData.map((value, index) => (
+          <option key={index + 1} value={value}>
+            {value.name}
+          </option>
+        ))}
+      </Select>
+    );
+  };
+
   return (
     <Flex
       alignItems={"stretch"}
-      flexDirection={"row"}
+      flexDirection={"column"}
       bgColor={"vimdesk_main_bg"}
     >
-      <MaterialList />
+      <Flex
+        marginBottom={5}
+        marginLeft={2}
+        flexDirection={"row"}
+        alignItems={"center"}
+      >
+        <MotionButton
+          backgroundColor={"transparent"}
+          _focus={{ border: "none" }}
+          size={"xxs"}
+          _focusWithin={{ backgroundColor: "transparent" }}
+          _hover={{ backgroundColor: "transparent", cursor: "pointer" }}
+          whileTap={{
+            scale: 0.8,
+          }}
+          whileHover={{
+            scale: 1.1,
+          }}
+          onClick={() => {
+            onBack();
+          }} //update this
+        >
+          <Image alt="vimdesk" src={Back} width={"30px"} />
+        </MotionButton>
+        <Text
+          marginLeft={2}
+          fontSize={20}
+          variant="body"
+          fontWeight={"black"}
+          color={"vimdesk_blue"}
+        >
+          [Title]
+        </Text>
+        {/* <VStack alignItems={"start"} marginLeft={2} marginTop={1}>
+          <Text
+            fontSize={20}
+            variant="body"
+            fontWeight={"black"}
+            color={"vimdesk_blue"}
+          >
+            [Title]
+          </Text>
+          <Text
+            fontSize={12}
+            variant="body"
+            fontWeight={"black"}
+            color={"vimdesk_faded_text"}
+          >
+            [description]
+          </Text>
+        </VStack> */}
+      </Flex>
+      <Flex
+        alignItems={"stretch"}
+        flexDirection={"row"}
+        bgColor={"vimdesk_main_bg"}
+      >
+        <MaterialList />
 
-      <Flex flexDirection={"column"} flex={1}>
-        <Actions />
-        <Options />
+        <Flex flexDirection={"column"} flex={1}>
+          <Actions />
+          <Options />
+        </Flex>
       </Flex>
     </Flex>
   );

@@ -32,10 +32,10 @@ import {
 
 export default function Reminders() {
   const { height, width } = useWindowSize();
-  const DnDCalendar = withDragAndDrop(BigCalendar);
-  const dateNow = new Date();
-  const monthNowIndex = dateNow.getMonth();
-  const yearNow = dateNow.getFullYear();
+  let dateNow = new Date();
+  let monthNowIndex = dateNow.getMonth();
+  let yearNow = dateNow.getFullYear();
+
   const setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
@@ -248,9 +248,9 @@ export default function Reminders() {
   };
 
   const YearButton = () => {
-    const currentYear = new Date().getFullYear(),
+    let currentYear = new Date().getFullYear(),
       years = [];
-    const startYear = 2010;
+    let startYear = 2010;
     while (startYear <= currentYear + 20) {
       years.push(startYear++);
     }
