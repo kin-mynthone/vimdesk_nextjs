@@ -40,11 +40,11 @@ import { isEmpty, isNull } from "lodash";
 
 export default function Reminders() {
   const { height, width } = useWindowSize();
-  const DnDCalendar = withDragAndDrop(BigCalendar);
-  const dateNow = new Date();
-  const monthNowIndex = dateNow.getMonth();
-  const yearNow = dateNow.getFullYear();
-  const setIsCredentialValid = signInInputStore(
+
+  let dateNow = new Date();
+  let monthNowIndex = dateNow.getMonth();
+  let yearNow = dateNow.getFullYear();
+  let setIsCredentialValid = signInInputStore(
     (state) => state.set_is_credential_valid
   );
 
