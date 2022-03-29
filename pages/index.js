@@ -24,6 +24,7 @@ import {
   IndexBanner,
   ShowPassword,
   HidePassword,
+  Back,
 } from "../assets/";
 import { MotionButton } from "../constants/components/motion";
 
@@ -164,6 +165,17 @@ export default function Home() {
           </InputRightElement>
         </InputGroup>
       </HStack>
+      <Text
+        color={"vimdesk_faded_text"}
+        fontSize={"13px"}
+        alignSelf={"end"}
+        _hover={{ cursor: "pointer" }}
+        onClick={() => {
+          setShowForgotPassword(!showForgotPassword);
+        }}
+      >
+        Forgot Password?
+      </Text>
     </VStack>
   );
 
@@ -189,6 +201,8 @@ export default function Home() {
       </Icon>
     );
   };
+
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const SignUpForm = (
     <VStack alignItems={"flex-start"} padding={"10"} spacing={5} width={"100%"}>
@@ -404,65 +418,169 @@ export default function Home() {
           alignItems={"center"}
           overflow={"hidden"}
         >
-          <VStack
-            width={"60%"}
-            background={"white"}
-            shadow={"lg"}
-            height={height}
-            marginY={"50px"}
-            borderRadius={"3xl"}
-            alignItems={"flex-start"}
-          >
-            {FormNavigator}
-
-            {isSigningIn ? SignInForm : SignUpForm}
-
-            <VStack width={"100%"} spacing={"5"} paddingX={"10"}>
-              <Button
-                variant={"solid"}
-                width={"100%"}
-                paddingY={"7"}
-                onClick={() => {
-                  isSigningIn == true
-                    ? validateCredentialInput()
-                    : CreateWorkspace();
-                }}
-              >
-                {"Let's Go!"}
-              </Button>
-              {isSigningIn && (
-                <Button variant={"outline"} width={"100%"} paddingY={"7"}>
-                  {"Use other workspace"}
-                </Button>
-              )}
-            </VStack>
-
-            <Spacer />
-
-            <HStack
-              justifyContent={"center"}
+          {!showForgotPassword ? (
+            <VStack
+              width={"60%"}
+              background={"white"}
+              shadow={"lg"}
+              height={height}
+              marginY={"50px"}
+              borderRadius={"3xl"}
               alignItems={"flex-start"}
-              backgroundColor={"vimdesk_lightgray"}
-              width={"100%"}
-              padding={"3"}
-              borderBottomRadius={"3xl"}
             >
-              <Text fontSize={"xx-small"}>
-                By clicking the button above, you agree to our
-              </Text>
-              <Link>
-                <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
-                  terms of use
+              {FormNavigator}
+
+              {isSigningIn ? SignInForm : SignUpForm}
+
+              <VStack width={"100%"} spacing={"5"} paddingX={"10"}>
+                <Button
+                  variant={"solid"}
+                  width={"100%"}
+                  paddingY={"7"}
+                  onClick={() => {
+                    isSigningIn == true
+                      ? validateCredentialInput()
+                      : CreateWorkspace();
+                  }}
+                >
+                  {"Let's Go!"}
+                </Button>
+                {isSigningIn && (
+                  <Button variant={"outline"} width={"100%"} paddingY={"7"}>
+                    {"Use other workspace"}
+                  </Button>
+                )}
+              </VStack>
+
+              <Spacer />
+
+              <HStack
+                justifyContent={"center"}
+                alignItems={"flex-start"}
+                backgroundColor={"vimdesk_lightgray"}
+                width={"100%"}
+                padding={"3"}
+                borderBottomRadius={"3xl"}
+              >
+                <Text fontSize={"xx-small"}>
+                  By clicking the button above, you agree to our
                 </Text>
-              </Link>
-              <Text fontSize={"xx-small"}>and</Text>
-              <Link>
-                <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
-                  conditions
+                <Link>
+                  <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
+                    terms of use
+                  </Text>
+                </Link>
+                <Text fontSize={"xx-small"}>and</Text>
+                <Link>
+                  <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
+                    conditions
+                  </Text>
+                </Link>
+              </HStack>
+            </VStack>
+          ) : (
+            <VStack
+              width={"60%"}
+              background={"white"}
+              shadow={"lg"}
+              height={height}
+              marginY={"50px"}
+              borderRadius={"3xl"}
+              alignItems={"flex-start"}
+            >
+              <VStack
+                width={"100%"}
+                spacing={"5"}
+                paddingX={"10"}
+                paddingTop={10}
+                alignItems={"start"}
+              >
+                <HStack>
+                  <MotionButton
+                    backgroundColor={"transparent"}
+                    _focus={{ border: "none" }}
+                    size="xxs"
+                    _focusWithin={{ backgroundColor: "transparent" }}
+                    _hover={{
+                      backgroundColor: "transparent",
+                      cursor: "pointer",
+                    }}
+                    flexDirection={"row"}
+                    whileTap={{
+                      scale: 0.8,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    onClick={() => {
+                      setShowForgotPassword(!showForgotPassword);
+                    }} //update this
+                  >
+                    <Image alt="vimdesk" src={Back} height={25} width={25} />
+                  </MotionButton>
+                  <Text
+                    textColor={"vimdesk_blue"}
+                    fontSize={18}
+                    marginLeft={1}
+                    fontWeight={"bold"}
+                  >
+                    Reset your password
+                  </Text>
+                </HStack>
+
+                <VStack
+                  alignItems={"flex-start"}
+                  width={"100%"}
+                  paddingTop={"40px"}
+                >
+                  <Text color={"vimdesk_faded_text"} fontSize={"13px"}>
+                    Email
+                  </Text>
+
+                  <Input
+                    variant={"flushed"}
+                    placeholder="Email"
+                    fontSize={"13px"}
+                    onChange={setSignUpEmailInput}
+                  />
+                </VStack>
+                <Button
+                  variant={"solid"}
+                  width={"100%"}
+                  paddingY={"7"}
+                  onClick={() => {}}
+                >
+                  {"Send Reset Link"}
+                </Button>
+              </VStack>
+
+              <Spacer />
+
+              <HStack
+                justifyContent={"center"}
+                alignItems={"flex-start"}
+                backgroundColor={"vimdesk_lightgray"}
+                width={"100%"}
+                padding={"3"}
+                borderBottomRadius={"3xl"}
+              >
+                <Text fontSize={"xx-small"}>
+                  By clicking the button above, you agree to our
                 </Text>
-              </Link>
-            </HStack>
-          </VStack>
+                <Link>
+                  <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
+                    terms of use
+                  </Text>
+                </Link>
+                <Text fontSize={"xx-small"}>and</Text>
+                <Link>
+                  <Text fontSize={"xx-small"} color={"vimdesk_blue"}>
+                    conditions
+                  </Text>
+                </Link>
+              </HStack>
+            </VStack>
+          )}
         </VStack>
       </Flex>
     </Box>
